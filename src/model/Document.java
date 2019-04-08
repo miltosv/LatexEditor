@@ -1,5 +1,5 @@
 package model;
-
+import java.io.FileOutputStream;
 
 public class Document {
 	
@@ -80,7 +80,14 @@ public class Document {
 	}
 	
 	public void Save(String location) {
-		
+		 try{    
+             FileOutputStream fout=new FileOutputStream(location);    
+              
+             byte b[]=Contents.getBytes();//converting string into byte array    
+             fout.write(b);    
+             fout.close();    
+             //System.out.println("success...");    
+            }catch(Exception e){System.out.println(e);}        
 		
 	}
 

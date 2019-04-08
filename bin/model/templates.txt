@@ -1,0 +1,5 @@
+article ../tex-templates/article-template.tex
+book ../tex-templates/book-template.tex
+letter ../tex-templates/book-template.tex
+report ../tex-templates/report-template.tex
+empty ../tex-templates/empty-template.tex

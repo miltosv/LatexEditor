@@ -1,15 +1,16 @@
 package controller;
 
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+
+import model.Document;
 
 
 
 public class LoadCommand implements Command {
 
 	@Override
-	public void execute() {
+	public void execute(Document doc, String info) {
 
 		//MAYBE DOCUMENT SHOULD HANDLE THAT TOO OR DOC MANAGER WHO KNOWS. I DON'T ~MILTOSV
 

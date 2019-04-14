@@ -1,13 +1,13 @@
 package controller;
 
-<<<<<<< Updated upstream
+
 import java.util.HashMap;
 
 import model.Document;
-=======
+
 import model.Document;
 
->>>>>>> Stashed changes
+
 public class AddLatexCommand implements Command {
 
 	HashMap<String,String>latCommands=new HashMap<String,String>();
@@ -65,8 +65,7 @@ public class AddLatexCommand implements Command {
 		doc.setContents(docContents.concat(commandToAdd));
 				
 
-		// TODO Auto-generated method stub
->>>>>>> Stashed changes
+
 
 	}
 

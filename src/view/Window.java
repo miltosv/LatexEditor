@@ -4,16 +4,13 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import java.awt.GridBagLayout;
-import javax.swing.JScrollPane;
 import java.awt.GridBagConstraints;
 import javax.swing.JEditorPane;
 import javax.swing.JButton;
 import java.awt.Insets;
 import javax.swing.JMenuBar;
-import javax.swing.JRadioButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JTextPane;
 import javax.swing.JLabel;
 import java.awt.Color;
 import javax.swing.JPopupMenu;
@@ -21,15 +18,7 @@ import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-
-import controller.LatexEditorController;
-
-import com.jgoodies.forms.layout.FormSpecs;
-import net.miginfocom.swing.MigLayout;
-import java.awt.Font;
+//import controller.LatexEditorController;
 
 public class Window {
 
@@ -40,7 +29,7 @@ public class Window {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		LatexEditorController latexEditor = new LatexEditorController();
+		//LatexEditorController latexEditor = new LatexEditorController();
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

@@ -69,11 +69,11 @@ public class Window {
 		
 		JButton btnRollback = new JButton("Rollback");
 		menuBar.add(btnRollback);
-		btnRollback.addActionListener(e-> latexEditor.enact(btnRollback.getText()));
+		btnRollback.addActionListener(e-> latexEditor.enact(btnRollback.getText(),""));
 		
 		JButton btnSave = new JButton("Save");
 		menuBar.add(btnSave);
-		btnSave.addActionListener(e-> latexEditor.enact(btnSave.getText()));
+		btnSave.addActionListener(e-> latexEditor.enact(btnSave.getText(),""));
 		
 		JButton btnExit = new JButton("Exit");
 		menuBar.add(btnExit);
@@ -99,7 +99,7 @@ public class Window {
 		gbc_btnReport.gridx = 7;
 		gbc_btnReport.gridy = 0;
 		frame.getContentPane().add(btnReport, gbc_btnReport);
-		btnReport.addActionListener(e-> latexEditor.enact(btnRollback.getText()));
+		btnReport.addActionListener(e-> latexEditor.enact("Create", btnReport.getText()));
 		
 		JButton btnBook = new JButton("Book");
 		GridBagConstraints gbc_btnBook = new GridBagConstraints();
@@ -107,6 +107,7 @@ public class Window {
 		gbc_btnBook.gridx = 8;
 		gbc_btnBook.gridy = 0;
 		frame.getContentPane().add(btnBook, gbc_btnBook);
+		btnBook.addActionListener(e-> latexEditor.enact("Create", btnBook.getText()));
 		
 		JButton btnArticle = new JButton("Article");
 		GridBagConstraints gbc_btnArticle = new GridBagConstraints();
@@ -114,6 +115,7 @@ public class Window {
 		gbc_btnArticle.gridx = 9;
 		gbc_btnArticle.gridy = 0;
 		frame.getContentPane().add(btnArticle, gbc_btnArticle);
+		btnArticle.addActionListener(e-> latexEditor.enact("Create", btnArticle.getText()));
 		
 		JButton btnLetter = new JButton("Letter");
 		GridBagConstraints gbc_btnLetter = new GridBagConstraints();
@@ -121,6 +123,7 @@ public class Window {
 		gbc_btnLetter.gridx = 10;
 		gbc_btnLetter.gridy = 0;
 		frame.getContentPane().add(btnLetter, gbc_btnLetter);
+		btnLetter.addActionListener(e-> latexEditor.enact("Create", btnLetter.getText()));
 		
 		JButton btnEmpty = new JButton("Empty");
 		GridBagConstraints gbc_btnEmpty = new GridBagConstraints();
@@ -129,6 +132,7 @@ public class Window {
 		gbc_btnEmpty.gridx = 11;
 		gbc_btnEmpty.gridy = 0;
 		frame.getContentPane().add(btnEmpty, gbc_btnEmpty);
+		btnEmpty.addActionListener(e-> latexEditor.enact("Create", btnEmpty.getText()));
 		
 		JButton btnChapter = new JButton("Chapter");
 		btnChapter.setForeground(Color.BLACK);
@@ -137,6 +141,7 @@ public class Window {
 		gbc_btnChapter.gridx = 0;
 		gbc_btnChapter.gridy = 1;
 		frame.getContentPane().add(btnChapter, gbc_btnChapter);
+		btnChapter.addActionListener(e-> latexEditor.enact("AddLatex", btnChapter.getText()));
 		
 		JButton btnSection = new JButton("Section");
 		GridBagConstraints gbc_btnSection = new GridBagConstraints();
@@ -144,6 +149,7 @@ public class Window {
 		gbc_btnSection.gridx = 0;
 		gbc_btnSection.gridy = 2;
 		frame.getContentPane().add(btnSection, gbc_btnSection);
+		btnSection.addActionListener(e-> latexEditor.enact("AddLatex", btnSection.getText()));
 		
 		JLabel lblTextEditor = DefaultComponentFactory.getInstance().createLabel("Text Editor");
 		GridBagConstraints gbc_lblTextEditor = new GridBagConstraints();
@@ -158,6 +164,7 @@ public class Window {
 		gbc_btnSubsection.gridx = 0;
 		gbc_btnSubsection.gridy = 3;
 		frame.getContentPane().add(btnSubsection, gbc_btnSubsection);
+		btnSubsection.addActionListener(e-> latexEditor.enact("AddLatex", btnSubsection.getText()));
 		
 		JButton btnSubsubsection = new JButton("Subsubsection");
 		GridBagConstraints gbc_btnSubsubsection = new GridBagConstraints();
@@ -165,6 +172,7 @@ public class Window {
 		gbc_btnSubsubsection.gridx = 0;
 		gbc_btnSubsubsection.gridy = 4;
 		frame.getContentPane().add(btnSubsubsection, gbc_btnSubsubsection);
+		btnSubsubsection.addActionListener(e-> latexEditor.enact("AddLatex", btnSubsubsection.getText()));
 		
 		JButton btnItimizeList = new JButton("Itimize list");
 		GridBagConstraints gbc_btnItimizeList = new GridBagConstraints();
@@ -172,6 +180,7 @@ public class Window {
 		gbc_btnItimizeList.gridx = 0;
 		gbc_btnItimizeList.gridy = 5;
 		frame.getContentPane().add(btnItimizeList, gbc_btnItimizeList);
+		btnItimizeList.addActionListener(e-> latexEditor.enact("AddLatex", btnItimizeList.getText()));
 		
 		JButton btnEnumerationList = new JButton("Enumeration list");
 		GridBagConstraints gbc_btnEnumerationList = new GridBagConstraints();
@@ -179,6 +188,8 @@ public class Window {
 		gbc_btnEnumerationList.gridx = 0;
 		gbc_btnEnumerationList.gridy = 6;
 		frame.getContentPane().add(btnEnumerationList, gbc_btnEnumerationList);
+		btnEnumerationList.addActionListener(e-> latexEditor.enact("AddLatex", btnEnumerationList.getText()));
+
 		
 		JButton btnTable = new JButton("Table");
 		GridBagConstraints gbc_btnTable = new GridBagConstraints();
@@ -186,6 +197,8 @@ public class Window {
 		gbc_btnTable.gridx = 0;
 		gbc_btnTable.gridy = 7;
 		frame.getContentPane().add(btnTable, gbc_btnTable);
+		btnTable.addActionListener(e-> latexEditor.enact("AddLatex", btnTable.getText()));
+
 		
 		JScrollPane scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
@@ -206,6 +219,8 @@ public class Window {
 		gbc_btnFigure.gridx = 0;
 		gbc_btnFigure.gridy = 8;
 		frame.getContentPane().add(btnFigure, gbc_btnFigure);
+		btnFigure.addActionListener(e-> latexEditor.enact("AddLatex", btnFigure.getText()));
+
 		
 		JLabel lblTrackHistory = DefaultComponentFactory.getInstance().createLabel("Track History");
 		GridBagConstraints gbc_lblTrackHistory = new GridBagConstraints();
@@ -225,9 +240,14 @@ public class Window {
 		
 		JButton btnVolatile = new JButton("Volatile");
 		popupMenu.add(btnVolatile);
+		btnVolatile.addActionListener(e-> latexEditor.enact(btnActivateTrack.getText(), btnVolatile.getText()));
+
 		
 		JButton btnStable = new JButton("Stable");
 		popupMenu.add(btnStable);
+		btnStable.addActionListener(e-> latexEditor.enact(btnActivateTrack.getText(), btnStable.getText()));
+
+		
 		GridBagConstraints gbc_btnActivateTrack = new GridBagConstraints();
 		gbc_btnActivateTrack.insets = new Insets(0, 0, 5, 5);
 		gbc_btnActivateTrack.gridx = 0;
@@ -240,6 +260,8 @@ public class Window {
 		gbc_btnDisableTrack.gridx = 0;
 		gbc_btnDisableTrack.gridy = 11;
 		frame.getContentPane().add(btnDisableTrack, gbc_btnDisableTrack);
+		btnDisableTrack.addActionListener(e-> latexEditor.enact(btnDisableTrack.getText(),""));
+
 	}
 
 	private static void addPopup(Component component, final JPopupMenu popup) {

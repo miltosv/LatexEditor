@@ -18,5 +18,7 @@
 	<classpathentry kind="lib" path="C:/Users/stell/Documents/eclipseProject/miglayout15-swing.jar"/>
 >>>>>>> Stashed changes
 >>>>>>> master
+=======
+>>>>>>> parent of ddfb589... classpath for eclipse
 	<classpathentry kind="output" path="bin"/>
 </classpath>

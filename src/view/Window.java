@@ -1,6 +1,6 @@
 package view;
 
-import java.awt.EventQueue;
+//import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import java.awt.GridBagLayout;
@@ -18,38 +18,38 @@ import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
-//import controller.LatexEditorController;
+import controller.LatexEditorController;
+import javax.swing.JScrollPane;
 
 public class Window {
 
 	private JFrame frame;
 	private JButton btnActivateTrack;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		//LatexEditorController latexEditor = new LatexEditorController();
-		
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Window window = new Window();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
-	public Window() {
-		initialize();
-	}
+	private LatexEditorController latexEditor = new LatexEditorController();
 	
+	/*public class MainWindow {
+		
+		public static void main(String[] args) {
+			
+			
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						Window window = new Window();
+						window.frame.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+		}
+
+		*/
+		public Window() {
+			initialize();
+		}
+
+	//}
 	
 	/**
 	 * Initialize the contents of the frame.
@@ -60,6 +60,7 @@ public class Window {
 		frame.setBounds(100, 100, 704, 437);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
 		
@@ -68,16 +69,20 @@ public class Window {
 		
 		JButton btnRollback = new JButton("Rollback");
 		menuBar.add(btnRollback);
+		btnRollback.addActionListener(e-> latexEditor.enact(btnRollback.getText()));
 		
 		JButton btnSave = new JButton("Save");
 		menuBar.add(btnSave);
+		btnSave.addActionListener(e-> latexEditor.enact(btnSave.getText()));
 		
 		JButton btnExit = new JButton("Exit");
 		menuBar.add(btnExit);
+		btnExit.addActionListener(e-> System.exit(0));
+		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{109, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{32, 23, 23, 23, 23, 23, 23, 23, 23, 14, 23, 23, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		frame.getContentPane().setLayout(gridBagLayout);
 		
@@ -94,6 +99,7 @@ public class Window {
 		gbc_btnReport.gridx = 7;
 		gbc_btnReport.gridy = 0;
 		frame.getContentPane().add(btnReport, gbc_btnReport);
+		btnReport.addActionListener(e-> latexEditor.enact(btnRollback.getText()));
 		
 		JButton btnBook = new JButton("Book");
 		GridBagConstraints gbc_btnBook = new GridBagConstraints();
@@ -181,14 +187,18 @@ public class Window {
 		gbc_btnTable.gridy = 7;
 		frame.getContentPane().add(btnTable, gbc_btnTable);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.gridwidth = 10;
+		gbc_scrollPane.gridheight = 9;
+		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridx = 7;
+		gbc_scrollPane.gridy = 3;
+		frame.getContentPane().add(scrollPane, gbc_scrollPane);
+		
 		JEditorPane editorPane = new JEditorPane();
-		GridBagConstraints gbc_editorPane = new GridBagConstraints();
-		gbc_editorPane.gridwidth = 10;
-		gbc_editorPane.gridheight = 9;
-		gbc_editorPane.fill = GridBagConstraints.BOTH;
-		gbc_editorPane.gridx = 7;
-		gbc_editorPane.gridy = 3;
-		frame.getContentPane().add(editorPane, gbc_editorPane);
+		scrollPane.setViewportView(editorPane);
 		
 		JButton btnFigure = new JButton("Figure");
 		GridBagConstraints gbc_btnFigure = new GridBagConstraints();
@@ -249,4 +259,13 @@ public class Window {
 			}
 		});
 	}
+
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
+	}
+	
 }

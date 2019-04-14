@@ -1,5 +1,7 @@
 package controller;
 
+import model.Document;
+
 public interface Command {
-	void execute();
+	void execute(Document doc, String info);
 }

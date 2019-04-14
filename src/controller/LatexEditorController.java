@@ -2,26 +2,28 @@ package controller;
 
 import java.util.HashMap;
 
+import model.Document;
+
 public class LatexEditorController {
 	private HashMap<String, Command> latexControllerMap = new HashMap<String,Command>();
 	private CommandsFactory factory = new CommandsFactory();
+	private Document doc;
 	
 	public LatexEditorController() {
-		latexControllerMap.put("CreateCommand", factory.create("CreateCommand"));
-		latexControllerMap.put("AddLatexCommand", factory.create("AddLatexCommand"));
-		latexControllerMap.put("RollbackToPreviousVersionCommand", factory.create("RollbackToPreviousVersionCommand"));
-		latexControllerMap.put("EditCommand", factory.create("EditCommand"));
-		latexControllerMap.put("LoadCommand", factory.create("LoadCommand"));
-		latexControllerMap.put("SaveCommand", factory.create("SaveCommand"));
-		latexControllerMap.put("EnableVersionsManagementCommand", factory.create("EnableVersionsManagementCommand"));
+		latexControllerMap.put("Create", factory.create("CreateCommand"));
+		latexControllerMap.put("AddLatex", factory.create("AddLatexCommand"));
+		latexControllerMap.put("Rollback", factory.create("RollbackToPreviousVersionCommand"));
+		latexControllerMap.put("Edit", factory.create("EditCommand"));
+		latexControllerMap.put("Load", factory.create("LoadCommand"));
+		latexControllerMap.put("Save", factory.create("SaveCommand"));
+		latexControllerMap.put("EnableVersionsManagement", factory.create("EnableVersionsManagementCommand"));
 		latexControllerMap.put("DisableVersionsManagementCommand", factory.create("DisableVersionsManagementCommand"));
 		latexControllerMap.put("ChangeVersionsStrategyCommand", factory.create("ChangeVersionsStrategyCommand"));
 	}
 	
 	
-	
-	public void enact(String key) {
-		latexControllerMap.get(key).execute();
+	public void enact(String key,String info) {
+		latexControllerMap.get(key).execute(doc,info);
 		
 	}
 }

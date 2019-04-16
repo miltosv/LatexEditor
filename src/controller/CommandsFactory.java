@@ -2,8 +2,9 @@ package controller;
 
 
 public class CommandsFactory {
+	
 	public CommandsFactory() {
-		;
+		
 	}
 
 	

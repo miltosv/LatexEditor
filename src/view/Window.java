@@ -20,12 +20,15 @@ import java.awt.event.MouseEvent;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 import controller.LatexEditorController;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 
 public class Window {
 
 	private JFrame frame;
 	private JButton btnActivateTrack;
 	private LatexEditorController latexEditor = new LatexEditorController();
+	private JTextField TexFilePath;
+	
 	
 	/*public class MainWindow {
 		
@@ -69,20 +72,27 @@ public class Window {
 		
 		JButton btnRollback = new JButton("Rollback");
 		menuBar.add(btnRollback);
-		btnRollback.addActionListener(e-> latexEditor.enact(btnRollback.getText(),""));
+		btnRollback.addActionListener(e-> latexEditor.enact(btnRollback.getText(),TexFilePath.getText()));
 		
 		JButton btnSave = new JButton("Save");
 		menuBar.add(btnSave);
-		btnSave.addActionListener(e-> latexEditor.enact(btnSave.getText(),""));
+		btnSave.addActionListener(e-> latexEditor.enact(btnSave.getText(),TexFilePath.getText()));
 		
 		JButton btnExit = new JButton("Exit");
 		menuBar.add(btnExit);
+		
+		TexFilePath = new JTextField();
+		TexFilePath.setText("FilePath");
+		TexFilePath.setToolTipText("Where the file is stored");
+		menuBar.add(TexFilePath);
+		TexFilePath.setColumns(10);
+		
 		btnExit.addActionListener(e-> System.exit(0));
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{109, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.columnWidths = new int[]{109, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{32, 23, 23, 23, 23, 23, 23, 23, 23, 14, 23, 23, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		frame.getContentPane().setLayout(gridBagLayout);
 		
@@ -174,15 +184,15 @@ public class Window {
 		frame.getContentPane().add(btnSubsubsection, gbc_btnSubsubsection);
 		btnSubsubsection.addActionListener(e-> latexEditor.enact("AddLatex", btnSubsubsection.getText()));
 		
-		JButton btnItimizeList = new JButton("Itimize list");
-		GridBagConstraints gbc_btnItimizeList = new GridBagConstraints();
-		gbc_btnItimizeList.insets = new Insets(0, 0, 5, 5);
-		gbc_btnItimizeList.gridx = 0;
-		gbc_btnItimizeList.gridy = 5;
-		frame.getContentPane().add(btnItimizeList, gbc_btnItimizeList);
-		btnItimizeList.addActionListener(e-> latexEditor.enact("AddLatex", btnItimizeList.getText()));
+		JButton btnItemizeList = new JButton("Itemize_list");
+		GridBagConstraints gbc_btnItemizeList = new GridBagConstraints();
+		gbc_btnItemizeList.insets = new Insets(0, 0, 5, 5);
+		gbc_btnItemizeList.gridx = 0;
+		gbc_btnItemizeList.gridy = 5;
+		frame.getContentPane().add(btnItemizeList, gbc_btnItemizeList);
+		btnItemizeList.addActionListener(e-> latexEditor.enact("AddLatex", btnItemizeList.getText()));
 		
-		JButton btnEnumerationList = new JButton("Enumeration list");
+		JButton btnEnumerationList = new JButton("Enumeration_list");
 		GridBagConstraints gbc_btnEnumerationList = new GridBagConstraints();
 		gbc_btnEnumerationList.insets = new Insets(0, 0, 5, 5);
 		gbc_btnEnumerationList.gridx = 0;
@@ -202,9 +212,8 @@ public class Window {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.gridwidth = 10;
+		gbc_scrollPane.gridwidth = 11;
 		gbc_scrollPane.gridheight = 9;
-		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.gridx = 7;
 		gbc_scrollPane.gridy = 3;
@@ -290,4 +299,10 @@ public class Window {
 		this.frame = frame;
 	}
 	
+	public String getFileLocation() {
+		return TexFilePath.getText();
+	}
+	public void setFileLocation(String text) {
+		TexFilePath.setText(text);
+	}
 }

@@ -6,7 +6,8 @@ public class SaveCommand implements Command {
 
 	@Override
 	public void execute(Document doc, String info) {
-		//doc.Save(filelocation);
+		
+		doc.Save(info);
 
 	}
 

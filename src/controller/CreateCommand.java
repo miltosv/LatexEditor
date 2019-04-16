@@ -1,12 +1,18 @@
 package controller;
 
-import model.Document;
+import model.*;
 
 public class CreateCommand implements Command {
-
+	private DocumentManager manager; 
+	CreateCommand(){
+		manager=new DocumentManager();
+	}
 	@Override
 	public void execute(Document doc, String info) {
-		// TODO Auto-generated method stub
+		
+		//Document newdocument;
+		doc=manager.createDocument(info);
+		//doc=newdocument;
 
 	}
 

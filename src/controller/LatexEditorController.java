@@ -6,7 +6,7 @@ import model.Document;
 public class LatexEditorController {
 	private HashMap<String, Command> latexControllerMap = new HashMap<String,Command>();
 	private CommandsFactory factory = new CommandsFactory();
-	private Document doc = new Document("","");
+	protected Document document;
 	
 	public LatexEditorController() {
 		latexControllerMap.put("Create", factory.create("CreateCommand"));
@@ -18,11 +18,14 @@ public class LatexEditorController {
 		latexControllerMap.put("ActivateTrack", factory.create("EnableVersionsManagementCommand"));
 		latexControllerMap.put("DisableVersionsManagementCommand", factory.create("DisableVersionsManagementCommand"));
 		latexControllerMap.put("ChangeVersionsStrategyCommand", factory.create("ChangeVersionsStrategyCommand"));
+		
 	}
 	
 	
 	public void enact(String key,String info) {
-		latexControllerMap.get(key).execute(doc,info);
+		
+		(latexControllerMap.get(key)).execute(document,info);
+		
 		
 	}
 }

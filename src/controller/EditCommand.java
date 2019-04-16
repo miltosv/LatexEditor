@@ -6,7 +6,7 @@ public class EditCommand implements Command {
 
 	@Override
 	public void execute(Document doc, String info) {
-		
+		doc.setContents(info);
 		
 		
 		

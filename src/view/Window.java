@@ -26,9 +26,9 @@ public class Window {
 
 	private JFrame frame;
 	private JButton btnActivateTrack;
-	private LatexEditorController latexEditor = new LatexEditorController();
+	private LatexEditorController latexEditor = new LatexEditorController(this);
 	private JTextField TexFilePath;
-	
+	private JEditorPane editorPanel;
 	
 	/*public class MainWindow {
 		
@@ -60,7 +60,7 @@ public class Window {
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setForeground(Color.LIGHT_GRAY);
-		frame.setBounds(100, 100, 704, 437);
+		frame.setBounds(100, 100, 741, 498);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
@@ -168,6 +168,16 @@ public class Window {
 		gbc_lblTextEditor.gridy = 2;
 		frame.getContentPane().add(lblTextEditor, gbc_lblTextEditor);
 		
+		JButton btnEditBtn = new JButton("Edit");
+		btnEditBtn.setToolTipText("Click this to update the document");
+		GridBagConstraints gbc_btnEditBtn = new GridBagConstraints();
+		gbc_btnEditBtn.insets = new Insets(0, 0, 5, 5);
+		gbc_btnEditBtn.gridx = 8;
+		gbc_btnEditBtn.gridy = 2;
+		frame.getContentPane().add(btnEditBtn, gbc_btnEditBtn);
+		btnEditBtn.addActionListener(e-> latexEditor.enact("Edit",this.GetDocText()));
+		
+		
 		JButton btnSubsection = new JButton("Subsection");
 		GridBagConstraints gbc_btnSubsection = new GridBagConstraints();
 		gbc_btnSubsection.insets = new Insets(0, 0, 5, 5);
@@ -219,8 +229,12 @@ public class Window {
 		gbc_scrollPane.gridy = 3;
 		frame.getContentPane().add(scrollPane, gbc_scrollPane);
 		
-		JEditorPane editorPane = new JEditorPane();
-		scrollPane.setViewportView(editorPane);
+		editorPanel = new JEditorPane();
+		//editorPanel.setText(latexEditor.update());
+		scrollPane.setViewportView(editorPanel);
+		
+		//latexEditor.enact("Edit", this.GetDocText());
+		
 		
 		JButton btnFigure = new JButton("Figure");
 		GridBagConstraints gbc_btnFigure = new GridBagConstraints();
@@ -305,4 +319,14 @@ public class Window {
 	public void setFileLocation(String text) {
 		TexFilePath.setText(text);
 	}
+	
+	public void ReFreshText(String str) {
+		editorPanel.setText(str);
+	}
+	public String GetDocText() {
+		
+		return editorPanel.getText();
+		
+	}
+	
 }

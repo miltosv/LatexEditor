@@ -9,10 +9,13 @@ import model.Document;
 
 
 public class AddLatexCommand implements Command {
+	private LatexEditorController controller;
 
 	HashMap<String,String>latCommands=new HashMap<String,String>();
 	
-	public AddLatexCommand() {
+	public AddLatexCommand(LatexEditorController control) {
+		controller=control;
+		
 		latCommands.put("Chapter","\\chapter{...} ");
 		latCommands.put("Section","\\section{} ");
 		latCommands.put("Subsection","\\subsection{} ");

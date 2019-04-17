@@ -2,32 +2,34 @@ package controller;
 
 
 public class CommandsFactory {
-	
-	public CommandsFactory() {
-		
+	private LatexEditorController controller;
+	public CommandsFactory(LatexEditorController control) {
+		controller=control;
 	}
 
 	
 	public Command create(String Name) {
 		switch(Name) {
 			case "CreateCommand": 
-				return new CreateCommand();
+				return new CreateCommand(controller);
 			case "AddLatexCommand":
-				return new AddLatexCommand();
+				return new AddLatexCommand(controller);
 			case "RollbackToPreviousVersionCommand":
-				return new RollbackToPreviousVersionCommand();
+				return new RollbackToPreviousVersionCommand(controller);
 			case "EditCommand":
-				return new 	EditCommand();
+				return new 	EditCommand(controller);
 			case "LoadCommand":
-				return new LoadCommand();
+				return new LoadCommand(controller);
 			case "SaveCommand":
-				return new SaveCommand();
+				return new SaveCommand(controller);
 			case "EnableVersionsManagementCommand":
-				return new EnableVersionsManagementCommand();
+				return new EnableVersionsManagementCommand(controller);
 			case "DisableVersionsManagementCommand":
-				return new DisableVersionsManagementCommand();
+				return new DisableVersionsManagementCommand(controller);
 			case "ChangeVersionsStrategyCommand":
-				return new ChangeVersionsStrategyCommand();
+				return new ChangeVersionsStrategyCommand(controller);
+			//case "UpdateCommand":
+			//	return new Updater(controller);
 			default: return null;
 		}
 

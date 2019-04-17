@@ -11,6 +11,7 @@ public class LatexEditorController {
 	private static Document document=new Document(" ","empty");
 	//private RefreshFactory Rfactory = new RefreshFactory();
 	//private Refresh contentR;
+	
 	public LatexEditorController() {
 		latexControllerMap.put("Create", factory.create("CreateCommand"));
 		latexControllerMap.put("AddLatex", factory.create("AddLatexCommand"));

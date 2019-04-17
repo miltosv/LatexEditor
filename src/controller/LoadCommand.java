@@ -9,6 +9,10 @@ import model.Document;
 
 public class LoadCommand implements Command {
 
+	private LatexEditorController controller;
+	public LoadCommand(LatexEditorController control) {
+		controller=control;
+	}
 	@Override
 	public void execute(Document doc, String info) {
 		

@@ -44,7 +44,7 @@ public class DocumentManager {
 	
 	public Document createDocument(String type) {
 		Document doc=map.get(type);
-		System.out.println("doc  "+type+"  created");
+		//System.out.println("doc  "+type+"  created");
 		return doc.cloneDeep();
 		
 	}

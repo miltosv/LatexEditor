@@ -11,6 +11,17 @@ public class LatexEditorController {
 	private static Document document=new Document(" ","empty");
 	//private RefreshFactory Rfactory = new RefreshFactory();
 	//private Refresh contentR;
+	public LatexEditorController() {
+		latexControllerMap.put("Create", factory.create("CreateCommand"));
+		latexControllerMap.put("AddLatex", factory.create("AddLatexCommand"));
+		latexControllerMap.put("Rollback", factory.create("RollbackToPreviousVersionCommand"));
+		latexControllerMap.put("Edit", factory.create("EditCommand"));
+		latexControllerMap.put("Load", factory.create("LoadCommand"));
+		latexControllerMap.put("Save", factory.create("SaveCommand"));
+		latexControllerMap.put("ActivateTrack", factory.create("EnableVersionsManagementCommand"));
+		latexControllerMap.put("DisableVersionsManagementCommand", factory.create("DisableVersionsManagementCommand"));
+		latexControllerMap.put("ChangeVersionsStrategyCommand", factory.create("ChangeVersionsStrategyCommand"));
+	}
 	public LatexEditorController(Window w) {
 		latexControllerMap.put("Create", factory.create("CreateCommand"));
 		latexControllerMap.put("AddLatex", factory.create("AddLatexCommand"));

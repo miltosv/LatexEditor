@@ -69,6 +69,8 @@ public class Window {
 		
 		JButton btnOpenFile = new JButton("Open file");
 		menuBar.add(btnOpenFile);
+		btnOpenFile.addActionListener(e-> latexEditor.enact("Load",TexFilePath.getText()));
+		
 		
 		JButton btnRollback = new JButton("Rollback");
 		menuBar.add(btnRollback);

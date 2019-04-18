@@ -8,6 +8,11 @@ public class CommandsFactory {
 	}
 
 	
+	public CommandsFactory() {
+	
+	}
+
+
 	public Command create(String Name) {
 		switch(Name) {
 			case "CreateCommand": 

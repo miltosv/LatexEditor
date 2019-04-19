@@ -3,13 +3,17 @@ package controller;
 
 public class CommandsFactory {
 	private LatexEditorController controller;
-	public CommandsFactory(LatexEditorController control) {
-		controller=control;
-	}
-
+	
+	
 	
 	public CommandsFactory() {
-	
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public CommandsFactory(LatexEditorController control) {
+		controller=control;
 	}
 
 

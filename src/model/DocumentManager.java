@@ -42,6 +42,14 @@ public class DocumentManager {
 		
 	}
 	
+	
+	
+	public HashMap<String, Document> getMap() {
+		return map;
+	}
+	public void setMap(HashMap<String, Document> map) {
+		this.map = map;
+	}
 	public Document createDocument(String type) {
 		Document doc=map.get(type);
 		//System.out.println("doc  "+type+"  created");

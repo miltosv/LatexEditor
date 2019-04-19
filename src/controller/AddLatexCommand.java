@@ -11,8 +11,9 @@ import model.Document;
 public class AddLatexCommand implements Command {
 	private LatexEditorController controller;
 
-	HashMap<String,String>latCommands=new HashMap<String,String>();
+	HashMap<String,String> latCommands=new HashMap<String,String>();
 	
+
 	public AddLatexCommand(LatexEditorController control) {
 		controller=control;
 		
@@ -50,6 +51,7 @@ public class AddLatexCommand implements Command {
 		
 		
 	}
+	
 	@Override
 	public void execute(Document doc, String info) {
 

@@ -31,9 +31,9 @@ public class CommandsFactory {
 				return new LoadCommand(controller);
 			case "SaveCommand":
 				return new SaveCommand(controller);
-			case "EnableVersionsManagementCommand":
+			case "EnableVersions":
 				return new EnableVersionsManagementCommand(controller);
-			case "DisableVersionsManagementCommand":
+			case "DisableVersions":
 				return new DisableVersionsManagementCommand(controller);
 			case "ChangeVersionsStrategyCommand":
 				return new ChangeVersionsStrategyCommand(controller);

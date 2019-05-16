@@ -21,14 +21,23 @@ import com.jgoodies.forms.factories.DefaultComponentFactory;
 import controller.LatexEditorController;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.JRadioButton;
+import javax.swing.JCheckBox;
+import javax.swing.ButtonGroup;
+import javax.swing.SwingConstants;
+import javax.swing.JFileChooser;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyAdapter;
 
 public class Window {
 
 	private JFrame frame;
-	private JButton btnActivateTrack;
 	private LatexEditorController latexEditor = new LatexEditorController(this);
 	private JTextField TexFilePath;
 	private JEditorPane editorPanel;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
 	
 	/*public class MainWindow {
 		
@@ -60,7 +69,7 @@ public class Window {
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setForeground(Color.LIGHT_GRAY);
-		frame.setBounds(100, 100, 741, 498);
+		frame.setBounds(100, 100, 857, 558);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
@@ -68,8 +77,10 @@ public class Window {
 		frame.setJMenuBar(menuBar);
 		
 		JButton btnOpenFile = new JButton("Open file");
-		menuBar.add(btnOpenFile);
+		menuBar.add(btnOpenFile);	
 		btnOpenFile.addActionListener(e-> latexEditor.enact("Load",TexFilePath.getText()));
+		
+		
 		
 		
 		JButton btnRollback = new JButton("Rollback");
@@ -84,18 +95,35 @@ public class Window {
 		menuBar.add(btnExit);
 		
 		TexFilePath = new JTextField();
-		TexFilePath.setText("FilePath");
+		TexFilePath.setText("CLICK ON THIS BUTTON TO SET FILE LOCATION THEN OPEN/SAVE \u2192  ");
 		TexFilePath.setToolTipText("Where the file is stored");
 		menuBar.add(TexFilePath);
 		TexFilePath.setColumns(10);
+		
+		JButton SetFileLocationBtn = new JButton("Set File Location");
+			SetFileLocationBtn.addActionListener(new ActionListener() 
+			{
+			public void actionPerformed(ActionEvent ch) 
+			{
+				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+				fileChooser.setAcceptAllFileFilterUsed(false);
+				int rVal = fileChooser.showOpenDialog(null);
+				if (rVal == JFileChooser.APPROVE_OPTION) {
+					TexFilePath.setText(fileChooser.getSelectedFile().toString());
+				}
+			}
+			});
+			
+		menuBar.add(SetFileLocationBtn);
 		
 		btnExit.addActionListener(e-> System.exit(0));
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{109, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{32, 23, 23, 23, 23, 23, 23, 23, 23, 14, 23, 23, 0};
+		gridBagLayout.rowHeights = new int[]{32, 23, 23, 23, 23, 23, 23, 23, 23, 14, 23, 23, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		frame.getContentPane().setLayout(gridBagLayout);
 		
 		JLabel lblCommands = new JLabel("Commands");
@@ -104,6 +132,14 @@ public class Window {
 		gbc_lblCommands.gridx = 0;
 		gbc_lblCommands.gridy = 0;
 		frame.getContentPane().add(lblCommands, gbc_lblCommands);
+		
+		JLabel CreateLbl = new JLabel("Create New :");
+		CreateLbl.setHorizontalAlignment(SwingConstants.TRAILING);
+		GridBagConstraints gbc_CreateLbl = new GridBagConstraints();
+		gbc_CreateLbl.insets = new Insets(0, 0, 5, 5);
+		gbc_CreateLbl.gridx = 5;
+		gbc_CreateLbl.gridy = 0;
+		frame.getContentPane().add(CreateLbl, gbc_CreateLbl);
 		
 		JButton btnReport = new JButton("Report");
 		GridBagConstraints gbc_btnReport = new GridBagConstraints();
@@ -166,15 +202,15 @@ public class Window {
 		JLabel lblTextEditor = DefaultComponentFactory.getInstance().createLabel("Text Editor");
 		GridBagConstraints gbc_lblTextEditor = new GridBagConstraints();
 		gbc_lblTextEditor.insets = new Insets(0, 0, 5, 5);
-		gbc_lblTextEditor.gridx = 7;
+		gbc_lblTextEditor.gridx = 4;
 		gbc_lblTextEditor.gridy = 2;
 		frame.getContentPane().add(lblTextEditor, gbc_lblTextEditor);
 		
-		JButton btnEditBtn = new JButton("Edit");
+		JButton btnEditBtn = new JButton("Commit Changes");
 		btnEditBtn.setToolTipText("Click this to update the document");
 		GridBagConstraints gbc_btnEditBtn = new GridBagConstraints();
 		gbc_btnEditBtn.insets = new Insets(0, 0, 5, 5);
-		gbc_btnEditBtn.gridx = 8;
+		gbc_btnEditBtn.gridx = 5;
 		gbc_btnEditBtn.gridy = 2;
 		frame.getContentPane().add(btnEditBtn, gbc_btnEditBtn);
 		btnEditBtn.addActionListener(e-> latexEditor.enact("Edit",this.GetDocText()));
@@ -224,18 +260,23 @@ public class Window {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.gridwidth = 11;
-		gbc_scrollPane.gridheight = 9;
+		gbc_scrollPane.gridwidth = 14;
+		gbc_scrollPane.gridheight = 14;
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane.gridx = 7;
+		gbc_scrollPane.gridx = 4;
 		gbc_scrollPane.gridy = 3;
 		frame.getContentPane().add(scrollPane, gbc_scrollPane);
 		
 		editorPanel = new JEditorPane();
-		//editorPanel.setText(latexEditor.update());
+		editorPanel.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				handleKeypress();
+			}
+		});
+		
 		scrollPane.setViewportView(editorPanel);
 		
-		//latexEditor.enact("Edit", this.GetDocText());
 		
 		
 		JButton btnFigure = new JButton("Figure");
@@ -254,57 +295,43 @@ public class Window {
 		gbc_lblTrackHistory.gridy = 9;
 		frame.getContentPane().add(lblTrackHistory, gbc_lblTrackHistory);
 		
-		btnActivateTrack = new JButton("Activate Track");
-		btnActivateTrack.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
+		JRadioButton TrackingON = new JRadioButton("Tracking ON");
+		buttonGroup_1.add(TrackingON);
+		GridBagConstraints gbc_TrackingON = new GridBagConstraints();
+		gbc_TrackingON.insets = new Insets(0, 0, 5, 5);
+		gbc_TrackingON.gridx = 0;
+		gbc_TrackingON.gridy = 10;
+		frame.getContentPane().add(TrackingON, gbc_TrackingON);
 		
-		JPopupMenu popupMenu = new JPopupMenu();
-		addPopup(btnActivateTrack, popupMenu);
+		JRadioButton TrackingOFF = new JRadioButton("Tracking OFF");
+		TrackingOFF.setSelected(true);
+		buttonGroup_1.add(TrackingOFF);
+		GridBagConstraints gbc_TrackingOFF = new GridBagConstraints();
+		gbc_TrackingOFF.insets = new Insets(0, 0, 5, 5);
+		gbc_TrackingOFF.gridx = 0;
+		gbc_TrackingOFF.gridy = 11;
+		frame.getContentPane().add(TrackingOFF, gbc_TrackingOFF);
 		
-		JButton btnVolatile = new JButton("Volatile");
-		popupMenu.add(btnVolatile);
-		btnVolatile.addActionListener(e-> latexEditor.enact(btnActivateTrack.getText(), btnVolatile.getText()));
-
+		JRadioButton Volatile = new JRadioButton("Volatile");
+		buttonGroup.add(Volatile);
+		Volatile.setSelected(true);
+		GridBagConstraints gbc_Volatile = new GridBagConstraints();
+		gbc_Volatile.insets = new Insets(0, 0, 5, 5);
+		gbc_Volatile.gridx = 0;
+		gbc_Volatile.gridy = 12;
+		frame.getContentPane().add(Volatile, gbc_Volatile);
 		
-		JButton btnStable = new JButton("Stable");
-		popupMenu.add(btnStable);
-		btnStable.addActionListener(e-> latexEditor.enact(btnActivateTrack.getText(), btnStable.getText()));
-
-		
-		GridBagConstraints gbc_btnActivateTrack = new GridBagConstraints();
-		gbc_btnActivateTrack.insets = new Insets(0, 0, 5, 5);
-		gbc_btnActivateTrack.gridx = 0;
-		gbc_btnActivateTrack.gridy = 10;
-		frame.getContentPane().add(btnActivateTrack, gbc_btnActivateTrack);
-		
-		JButton btnDisableTrack = new JButton("Disable Track");
-		GridBagConstraints gbc_btnDisableTrack = new GridBagConstraints();
-		gbc_btnDisableTrack.insets = new Insets(0, 0, 0, 5);
-		gbc_btnDisableTrack.gridx = 0;
-		gbc_btnDisableTrack.gridy = 11;
-		frame.getContentPane().add(btnDisableTrack, gbc_btnDisableTrack);
-		btnDisableTrack.addActionListener(e-> latexEditor.enact(btnDisableTrack.getText(),""));
+		JRadioButton NonVolatile = new JRadioButton("Stable");
+		buttonGroup.add(NonVolatile);
+		GridBagConstraints gbc_NonVolatile = new GridBagConstraints();
+		gbc_NonVolatile.insets = new Insets(0, 0, 5, 5);
+		gbc_NonVolatile.gridx = 0;
+		gbc_NonVolatile.gridy = 13;
+		frame.getContentPane().add(NonVolatile, gbc_NonVolatile);
 
 	}
 
 	private static void addPopup(Component component, final JPopupMenu popup) {
-		component.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-			public void mouseReleased(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-			private void showMenu(MouseEvent e) {
-				popup.show(e.getComponent(), e.getX(), e.getY());
-			}
-		});
 	}
 
 	public JFrame getFrame() {
@@ -329,6 +356,9 @@ public class Window {
 		
 		return editorPanel.getText();
 		
+	}
+	private void handleKeypress() {
+		latexEditor.enact("Edit", this.GetDocText());
 	}
 	
 }

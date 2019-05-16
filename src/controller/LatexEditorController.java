@@ -30,9 +30,9 @@ public class LatexEditorController {
 		latexControllerMap.put("Edit", factory.create("EditCommand"));
 		latexControllerMap.put("Load", factory.create("LoadCommand"));
 		latexControllerMap.put("Save", factory.create("SaveCommand"));
-		latexControllerMap.put("EnableVersions", factory.create("EnableVersionsCommand"));
-		latexControllerMap.put("DisableVersions", factory.create("DisableVersionsCommand"));
-		latexControllerMap.put("ChangeStrategy", factory.create("ChangeStrategyCommand"));
+		latexControllerMap.put("ActivateTrack", factory.create("EnableVersionsManagementCommand"));
+		latexControllerMap.put("DisableVersionsManagementCommand", factory.create("DisableVersionsManagementCommand"));
+		latexControllerMap.put("ChangeVersionsStrategyCommand", factory.create("ChangeVersionsStrategyCommand"));
 		//Refresh contentR=RefreshFactory.Create("Contents");
 		view=w;
 	}

@@ -1,5 +1,4 @@
-package controller;
-import model.Document;
+package model;
 import java.util.ArrayList;
 public interface VersionsStrategy {
 	

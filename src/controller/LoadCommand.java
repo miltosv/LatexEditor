@@ -14,8 +14,9 @@ public class LoadCommand implements Command {
 		controller=control;
 	}
 	@Override
-	public void execute(Document doc, String info) {
+	public void execute(Document doc, String[] args) {
 		Document document;
+		String info = args[1];
 		document=new Document("","empty");
 		//MAYBE DOCUMENT SHOULD HANDLE THAT TOO OR DOC MANAGER WHO KNOWS. I DON'T ~MILTOSV
 

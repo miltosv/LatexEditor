@@ -10,7 +10,9 @@ public class EditCommand implements Command {
 		controller=control;
 	}
 	@Override
-	public void execute(Document doc, String info) {
+	public void execute(Document doc, String [] args)
+	{
+		String info = args[1];
 		doc.setContents(info);	
 		
 		

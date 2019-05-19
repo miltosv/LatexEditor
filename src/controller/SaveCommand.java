@@ -10,8 +10,8 @@ public class SaveCommand implements Command {
 	}
 	
 	@Override
-	public void execute(Document doc, String info) {
-		
+	public void execute(Document doc, String[] args) {
+		String info= args[1];
 		doc.Save(info);
 
 	}

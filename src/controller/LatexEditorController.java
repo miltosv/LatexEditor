@@ -49,9 +49,9 @@ public class LatexEditorController {
 		
 	}
 	
-	public void enact(String key,String info) {
-		
-		(latexControllerMap.get(key)).execute(document,info);
+	public void enact(String [] args) {
+		String key=args[0];
+		(latexControllerMap.get(key)).execute(document,args);
 		view.ReFreshText(this.update());
 		//System.out.println(document.getContents());
 	}

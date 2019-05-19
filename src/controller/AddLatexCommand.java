@@ -53,8 +53,10 @@ public class AddLatexCommand implements Command {
 	}
 	
 	@Override
-	public void execute(Document doc, String info) {
-
+	public void execute(Document doc, String [] args) {
+		String info = args[1];
+		int caret =Integer.parseInt(args[2]);
+		
 		String doctype=doc.getType();
 		String docContents=doc.getContents();
 		String commandToAdd=latCommands.get(info);
@@ -67,9 +69,24 @@ public class AddLatexCommand implements Command {
 			return;
 		}
 		
-		doc.setContents(docContents.concat(commandToAdd));
-				
-
+		//doc.setContents(docContents.concat(commandToAdd));
+		
+		StringBuilder builder = new StringBuilder();
+		
+		builder.append(docContents);
+		builder.ensureCapacity(100);
+		builder.insert((caret+1),commandToAdd);
+		doc.setContents(builder.toString());
+		/*
+		String newString = new String();
+		for(int i=0;i<docContents.length();i++) {
+			newString += docContents.charAt(i);
+			if(i==caret) {
+				newString+=commandToAdd;
+			}
+		}
+		doc.setContents(newString);
+	*/
 
 
 	}

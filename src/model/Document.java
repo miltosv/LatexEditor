@@ -1,7 +1,8 @@
 package model;
 import java.io.FileOutputStream;
+import java.io.Serializable;
 
-public class Document {
+public class Document implements Serializable {
 	
 	private String author;
 	private String date;

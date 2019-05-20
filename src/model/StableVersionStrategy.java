@@ -3,27 +3,36 @@ package model;
 import java.util.ArrayList;
 
 public class StableVersionStrategy implements VersionsStrategy {
-
+	private String stableLocations="\\src\\stables\\"; //the user doesn't need to determine where the stables are being stored, just needs to pick them
+	private ArrayList<Document> Documents;
 	@Override
 	public void putVersion(Document doc) {
-		// TODO Auto-generated method stub
+		Documents.add(doc.cloneDeep());
 
 	}
 
 	@Override
 	public void removeVersion() {
-		// TODO Auto-generated method stub
+		Documents.remove(Documents.size()-1);
 
 	}
 
 	@Override
 	public void setEntireHistory(ArrayList<Document> doc) {
-		// TODO Auto-generated method stub
+		for(Document dc : doc) {
+			Documents.add(dc.cloneDeep());
+		}
 
 	}
 
 	@Override
 	public ArrayList<Document> getEntireHistory() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Document getVersion() {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -1,12 +1,13 @@
 package model;
 import java.io.FileOutputStream;
+import java.io.Serializable;
 
-public class Document {
+public class Document implements Serializable {
 	
 	private String author;
 	private String date;
 	private String copyright;
-	private int VersionID;
+	private int VersionID = 0;
 	private String Contents;
 	private String type;
 	private String location;
@@ -67,6 +68,7 @@ public class Document {
 	}
 	public void setContents(String contents) {
 		Contents = contents;
+		VersionID++;
 	}
 	public String getType() {
 		return type;

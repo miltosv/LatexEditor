@@ -11,10 +11,11 @@ public class VolatileVersionStrategy implements VersionsStrategy {
 	
 	@Override
 	public void putVersion(Document doc) {
-		Documents.add(doc);
+		Documents.add(doc.cloneDeep());
 
 	}
 
+	
 	@Override
 	public void removeVersion() {
 		if (!(Documents.isEmpty())){
@@ -23,6 +24,19 @@ public class VolatileVersionStrategy implements VersionsStrategy {
 
 	}
 
+	public Document getVersion() {
+		Document doc;
+		if (!(Documents.isEmpty()))
+		{
+			doc = Documents.get(Documents.size()-1);
+			this.removeVersion();
+			return doc;
+			 
+		}
+		return null;
+		
+	}
+	
 	@Override
 	public void setEntireHistory(ArrayList<Document> doc) {
 		for (Document dc : doc) {
@@ -36,5 +50,7 @@ public class VolatileVersionStrategy implements VersionsStrategy {
 		
 		return Documents;
 	}
+
+
 
 }

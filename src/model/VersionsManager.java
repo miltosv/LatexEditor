@@ -30,7 +30,10 @@ public class VersionsManager {
 		CurrentDocument = doc;
 		
 	}
-	
+	public Document getPreviousVersion() {
+		return currentStrategy.getVersion();
+		
+	}
 	
 	
 

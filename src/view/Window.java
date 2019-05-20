@@ -260,7 +260,7 @@ public class Window {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.gridwidth = 14;
+		gbc_scrollPane.gridwidth = 12;
 		gbc_scrollPane.gridheight = 14;
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.gridx = 4;

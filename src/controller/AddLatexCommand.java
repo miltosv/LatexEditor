@@ -18,9 +18,9 @@ public class AddLatexCommand implements Command {
 		controller=control;
 		
 		latCommands.put("Chapter","\\chapter{...} ");
-		latCommands.put("Section","\\section{} ");
-		latCommands.put("Subsection","\\subsection{} ");
-		latCommands.put("Subsubsection","\\subsubsection{} ");
+		latCommands.put("Section","\\section{...} ");
+		latCommands.put("Subsection","\\subsection{...} ");
+		latCommands.put("Subsubsection","\\subsubsection{...} ");
 		latCommands.put("Itemize_list","\\begin{itemize}\r\n" + 
 				"\\item ...\r\n" + 
 				"\\item ...\r\n" + 
@@ -75,7 +75,7 @@ public class AddLatexCommand implements Command {
 		
 		builder.append(docContents);
 		builder.ensureCapacity(100);
-		builder.insert((caret+1),commandToAdd);
+		builder.insert((caret),commandToAdd);
 		doc.setContents(builder.toString());
 		/*
 		String newString = new String();

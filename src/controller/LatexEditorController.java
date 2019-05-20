@@ -8,7 +8,7 @@ public class LatexEditorController {
 	private Window view;
 	private HashMap<String, Command> latexControllerMap = new HashMap<String,Command>();
 	private CommandsFactory factory = new CommandsFactory(this);
-	private static Document document=new Document(" ","empty");
+	private Document document=new Document(" ","empty");
 	//private RefreshFactory Rfactory = new RefreshFactory();
 	//private Refresh contentR;
 	

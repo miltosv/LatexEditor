@@ -60,4 +60,10 @@ public class StableVersionStrategy implements VersionsStrategy {
 		return null;
 	}
 
+	@Override
+	public Document getVersion() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

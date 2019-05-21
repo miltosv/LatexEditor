@@ -30,6 +30,7 @@ public class Document implements Serializable {
 		VersionID=0;
 		Contents=cont;
 		type=tp;
+		date=java.time.LocalDateTime.now().toString();
 		
 	}
 	

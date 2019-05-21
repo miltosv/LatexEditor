@@ -23,17 +23,20 @@ public class LatexEditorController {
 		latexControllerMap.put("DisableVersionsManagementCommand", factory.create("DisableVersionsManagementCommand"));
 		latexControllerMap.put("ChangeVersionsStrategyCommand", factory.create("ChangeVersionsStrategyCommand"));
 	}
+	
+	
 	public LatexEditorController(Window w) {
 		latexControllerMap.put("Create", factory.create("CreateCommand"));
 		latexControllerMap.put("AddLatex", factory.create("AddLatexCommand"));
-		latexControllerMap.put("Rollback", factory.create("RollbackToPreviousVersionCommand"));
 		latexControllerMap.put("Edit", factory.create("EditCommand"));
 		latexControllerMap.put("Load", factory.create("LoadCommand"));
 		latexControllerMap.put("Save", factory.create("SaveCommand"));
-		latexControllerMap.put("EnableVersions", factory.create("EnableVersionsCommand"));
-		latexControllerMap.put("DisableVersions", factory.create("DisableVersionsCommand"));
-		latexControllerMap.put("ChangeStrategy", factory.create("ChangeStrategyCommand"));
-		//Refresh contentR=RefreshFactory.Create("Contents");
+		latexControllerMap.put("Versions", factory.create("VersionsCommand"));
+//		latexControllerMap.put("EnableVersions", factory.create("EnableVersionsCommand"));
+//		latexControllerMap.put("DisableVersions", factory.create("DisableVersionsCommand"));
+//		latexControllerMap.put("ChangeStrategy", factory.create("ChangeStrategyCommand"));
+//		latexControllerMap.put("Rollback", factory.create("RollbackToPreviousVersionCommand"));
+
 		view=w;
 	}
 	
@@ -41,7 +44,7 @@ public class LatexEditorController {
 		document=doc;
 	}
 	
-	public String update() {
+	private String update() {
 		
 		//System.out.println(document.getContents());
 		return document.getContents();
@@ -52,6 +55,7 @@ public class LatexEditorController {
 	public void enact(String [] args) {
 		String key=args[0];
 		(latexControllerMap.get(key)).execute(document,args);
+		//System.out.println(this.update());
 		view.ReFreshText(this.update());
 		//System.out.println(document.getContents());
 	}

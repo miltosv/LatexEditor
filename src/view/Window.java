@@ -39,6 +39,8 @@ public class Window {
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
 	private int caretPosition;
+	private JTextField StableTextField;
+	//private String stableFilePath;
 	/*public class MainWindow {
 		
 		public static void main(String[] args) {
@@ -85,7 +87,7 @@ public class Window {
 		
 		JButton btnRollback = new JButton("Rollback");
 		menuBar.add(btnRollback);
-		btnRollback.addActionListener(e-> latexEditor.enact(new String [] {btnRollback.getText(),TexFilePath.getText()}));
+		btnRollback.addActionListener(e-> latexEditor.enact(new String [] {"Versions",btnRollback.getText()/*,TexFilePath.getText()*/}));
 		
 		JButton btnSave = new JButton("Save");
 		menuBar.add(btnSave);
@@ -122,7 +124,7 @@ public class Window {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{109, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{32, 23, 23, 23, 23, 23, 23, 23, 23, 14, 23, 23, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		frame.getContentPane().setLayout(gridBagLayout);
 		
@@ -213,7 +215,8 @@ public class Window {
 		gbc_btnEditBtn.gridx = 5;
 		gbc_btnEditBtn.gridy = 2;
 		frame.getContentPane().add(btnEditBtn, gbc_btnEditBtn);
-		btnEditBtn.addActionListener(e-> latexEditor.enact(new String[] {"Edit",this.GetDocText()}));
+		//btnEditBtn.addActionListener(e-> latexEditor.enact(new String[] {"Edit",this.GetDocText()}));
+		btnEditBtn.addActionListener(e-> latexEditor.enact(new String[] {"Versions","Commit"}));
 		
 		
 		JButton btnSubsection = new JButton("Subsection");
@@ -260,6 +263,7 @@ public class Window {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.insets = new Insets(0, 0, 0, 5);
 		gbc_scrollPane.gridwidth = 12;
 		gbc_scrollPane.gridheight = 14;
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
@@ -296,6 +300,9 @@ public class Window {
 		frame.getContentPane().add(lblTrackHistory, gbc_lblTrackHistory);
 		
 		JRadioButton TrackingON = new JRadioButton("Tracking ON");
+		TrackingON.setSelected(true);
+		TrackingON.addActionListener(e-> latexEditor.enact(new String [] {"Versions","Enable"}));
+			
 		buttonGroup_1.add(TrackingON);
 		GridBagConstraints gbc_TrackingON = new GridBagConstraints();
 		gbc_TrackingON.insets = new Insets(0, 0, 5, 5);
@@ -311,6 +318,7 @@ public class Window {
 		gbc_TrackingOFF.gridx = 0;
 		gbc_TrackingOFF.gridy = 11;
 		frame.getContentPane().add(TrackingOFF, gbc_TrackingOFF);
+		TrackingOFF.addActionListener(e-> latexEditor.enact(new String [] {"Versions","Disable"}));
 		
 		JRadioButton Volatile = new JRadioButton("Volatile");
 		buttonGroup.add(Volatile);
@@ -320,6 +328,7 @@ public class Window {
 		gbc_Volatile.gridx = 0;
 		gbc_Volatile.gridy = 12;
 		frame.getContentPane().add(Volatile, gbc_Volatile);
+		Volatile.addActionListener(e-> latexEditor.enact(new String [] {"Versions","Volatile"}));
 		
 		JRadioButton NonVolatile = new JRadioButton("Stable");
 		buttonGroup.add(NonVolatile);
@@ -328,7 +337,32 @@ public class Window {
 		gbc_NonVolatile.gridx = 0;
 		gbc_NonVolatile.gridy = 13;
 		frame.getContentPane().add(NonVolatile, gbc_NonVolatile);
-
+		//Volatile.addActionListener(e-> latexEditor.enact(new String [] {"Versions","Stable"}));
+		NonVolatile.addActionListener(new ActionListener() 
+		{
+		public void actionPerformed(ActionEvent ch) 
+		{
+			JFileChooser fileChooser = new JFileChooser();
+			fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+			fileChooser.setAcceptAllFileFilterUsed(false);
+			int rVal = fileChooser.showOpenDialog(null);
+			if (rVal == JFileChooser.APPROVE_OPTION) {
+				StableTextField.setText(fileChooser.getSelectedFile().toString());
+				latexEditor.enact(new String [] {"Versions","Stable",StableTextField.getText()});
+			}
+		}
+		});
+		
+		StableTextField = new JTextField();
+		GridBagConstraints gbc_StableTextField = new GridBagConstraints();
+		gbc_StableTextField.insets = new Insets(0, 0, 5, 5);
+		gbc_StableTextField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_StableTextField.gridx = 0;
+		gbc_StableTextField.gridy = 14;
+		frame.getContentPane().add(StableTextField, gbc_StableTextField);
+		StableTextField.setColumns(10);
+		
+		
 	}
 
 	

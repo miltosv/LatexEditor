@@ -23,8 +23,6 @@ public class CommandsFactory {
 				return new CreateCommand(controller);
 			case "AddLatexCommand":
 				return new AddLatexCommand(controller);
-			case "RollbackToPreviousVersionCommand":
-//				return new RollbackToPreviousVersionCommand(controller);
 			case "EditCommand":
 				return new 	EditCommand(controller);
 			case "LoadCommand":
@@ -33,6 +31,8 @@ public class CommandsFactory {
 				return new SaveCommand(controller);
 			case "VersionsCommand":
 				return new VersionsCommand(controller);
+//			case "RollbackToPreviousVersionCommand":
+//				return new RollbackToPreviousVersionCommand(controller);				
 //			case "EnableVersions":
 //				return new EnableVersionsManagementCommand(controller);
 //			case "DisableVersions":

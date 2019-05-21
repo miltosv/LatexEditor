@@ -11,6 +11,7 @@ public class StableVersionStrategy implements VersionsStrategy {
 	@Override
 	public void putVersion(Document doc) {
 		Documents.add(doc.cloneDeep());
+		/*
 		try
         {    
             //Saving of object in a file 
@@ -31,6 +32,24 @@ public class StableVersionStrategy implements VersionsStrategy {
         { 
             System.out.println("IOException is caught"); 
         } 
+		*/
+		try {
+			FileOutputStream file = new FileOutputStream(stableLocations+java.time.LocalDateTime.now()); 
+			ObjectOutputStream out = new ObjectOutputStream(file); 
+          
+			// Method for serialization of object 
+			out.writeObject(Documents); 
+          
+			out.close(); 
+        	file.close(); 
+          
+        	System.out.println("Object has been serialized"); 
+		}
+		catch(IOException ex) 
+        { 
+            System.out.println("IOException is caught"); 
+        } 
+
 		
 
 	}
@@ -38,6 +57,24 @@ public class StableVersionStrategy implements VersionsStrategy {
 	@Override
 	public void removeVersion() {
 		Documents.remove(Documents.size()-1);
+		try {
+			FileOutputStream file = new FileOutputStream(stableLocations+java.time.LocalDateTime.now()); 
+			ObjectOutputStream out = new ObjectOutputStream(file); 
+          
+			// Method for serialization of object 
+			out.writeObject(Documents); 
+          
+			out.close(); 
+        	file.close(); 
+          
+        	System.out.println("Object has been serialized"); 
+		}
+		catch(IOException ex) 
+        { 
+            System.out.println("IOException is caught"); 
+        } 
+
+		
 
 	}
 
@@ -58,8 +95,9 @@ public class StableVersionStrategy implements VersionsStrategy {
 
 	@Override
 	public Document getVersion() {
-		// TODO Auto-generated method stub
-		return null;
+		Document doc = Documents.get(Documents.size()-1);
+		this.removeVersion();
+		return doc;
 	}
 
 }

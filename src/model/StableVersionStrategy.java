@@ -54,11 +54,7 @@ public class StableVersionStrategy implements VersionsStrategy {
 		return Documents;
 	}
 
-	@Override
-	public Document getVersion() {
-		
-		return null;
-	}
+
 
 	@Override
 	public Document getVersion() {

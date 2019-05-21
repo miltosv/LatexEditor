@@ -5,12 +5,12 @@ public class CommandsFactory {
 	private LatexEditorController controller;
 	
 	
-	
+	/*
 	public CommandsFactory() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
-
+	*/
 
 	public CommandsFactory(LatexEditorController control) {
 		controller=control;
@@ -24,19 +24,21 @@ public class CommandsFactory {
 			case "AddLatexCommand":
 				return new AddLatexCommand(controller);
 			case "RollbackToPreviousVersionCommand":
-				return new RollbackToPreviousVersionCommand(controller);
+//				return new RollbackToPreviousVersionCommand(controller);
 			case "EditCommand":
 				return new 	EditCommand(controller);
 			case "LoadCommand":
 				return new LoadCommand(controller);
 			case "SaveCommand":
 				return new SaveCommand(controller);
-			case "EnableVersions":
-				return new EnableVersionsManagementCommand(controller);
-			case "DisableVersions":
-				return new DisableVersionsManagementCommand(controller);
-			case "ChangeVersionsStrategyCommand":
-				return new ChangeVersionsStrategyCommand(controller);
+			case "VersionsCommand":
+				return new VersionsCommand(controller);
+//			case "EnableVersions":
+//				return new EnableVersionsManagementCommand(controller);
+//			case "DisableVersions":
+//				return new DisableVersionsManagementCommand(controller);
+//			case "ChangeVersionsStrategyCommand":
+//				return new ChangeVersionsStrategyCommand(controller);
 			//case "UpdateCommand":
 			//	return new Updater(controller);
 			default: return null;

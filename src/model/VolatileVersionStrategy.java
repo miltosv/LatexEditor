@@ -11,7 +11,10 @@ public class VolatileVersionStrategy implements VersionsStrategy {
 	
 	@Override
 	public void putVersion(Document doc) {
+		//System.out.println(doc.getContents());
 		Documents.add(doc.cloneDeep());
+		
+		//System.out.println("ADDED");
 
 	}
 

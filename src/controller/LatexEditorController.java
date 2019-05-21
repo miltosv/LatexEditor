@@ -8,7 +8,7 @@ public class LatexEditorController {
 	private Window view;
 	private HashMap<String, Command> latexControllerMap = new HashMap<String,Command>();
 	private CommandsFactory factory = new CommandsFactory(this);
-	private Document document=new Document(" ","empty");
+	private Document document;
 	//private RefreshFactory Rfactory = new RefreshFactory();
 	//private Refresh contentR;
 	
@@ -36,7 +36,7 @@ public class LatexEditorController {
 //		latexControllerMap.put("DisableVersions", factory.create("DisableVersionsCommand"));
 //		latexControllerMap.put("ChangeStrategy", factory.create("ChangeStrategyCommand"));
 //		latexControllerMap.put("Rollback", factory.create("RollbackToPreviousVersionCommand"));
-
+		document = new Document("  ","Empty");
 		view=w;
 	}
 	
@@ -54,7 +54,9 @@ public class LatexEditorController {
 	
 	public void enact(String [] args) {
 		String key=args[0];
-		(latexControllerMap.get(key)).execute(document,args);
+		//System.out.println(key);
+		//System.out.println(args[1]);
+		latexControllerMap.get(key).execute(document,args);
 		//System.out.println(this.update());
 		view.ReFreshText(this.update());
 		//System.out.println(document.getContents());

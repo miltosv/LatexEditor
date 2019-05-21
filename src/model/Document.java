@@ -22,6 +22,16 @@ public class Document implements Serializable {
 		type=tp;
 		//location=loc;
 	}
+	public Document(String cont,String tp,int ID)
+	{
+		author="N/A";
+		date = "N/A";
+		copyright= "N/A";
+		VersionID=ID;
+		Contents=cont;
+		type=tp;
+		//location=loc;
+	}
 	
 	public Document(String auth,String dt,String cp,String type,String cont,String tp) {
 		author=auth;
@@ -33,6 +43,8 @@ public class Document implements Serializable {
 		date=java.time.LocalDateTime.now().toString();
 		
 	}
+
+	
 	
 	public String getLocation() {
 		return location;
@@ -79,7 +91,7 @@ public class Document implements Serializable {
 	}
 	
 	public Document cloneDeep() {
-		return new Document(new String(this.Contents),new String(this.type));
+		return new Document(new String(this.Contents),new String(this.type),new Integer(this.VersionID));
 	}
 	
 	public void Save(String location) {

@@ -10,8 +10,9 @@ public class VersionsManager {
 	public VersionsManager() {
 		currentStrategy=factory.createStrategy("Volatile"); // Manually setting it because it is DEFAULT
 		strategyType="Volatile";
-		DocumentManager dcm= new DocumentManager();
-		CurrentDocument=dcm.createDocument("Empty");
+//		DocumentManager dcm= new DocumentManager();
+//		CurrentDocument=dcm.createDocument("Empty");
+		CurrentDocument = new Document("\n ","empty");
 		status=true;
 	}
 	
@@ -36,7 +37,7 @@ public class VersionsManager {
 			return;
 		}
 		currentStrategy.putVersion(CurrentDocument);
-		CurrentDocument = doc;
+		//CurrentDocument = doc.cloneDeep();
 		System.out.println("VersionAdded");
 		
 	}

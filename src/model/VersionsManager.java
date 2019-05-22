@@ -4,17 +4,17 @@ public class VersionsManager {
 	private VersionsStrategy currentStrategy;
 	private VersioningFactory factory = new VersioningFactory();
 	private String strategyType;
-	private Document CurrentDocument;
+	//private Document CurrentDocument;
 	private boolean status;
 	
 	public VersionsManager() {
-		currentStrategy=factory.createStrategy("Volatile"); // Manually setting it because it is DEFAULT
+		currentStrategy=factory.createStrategy("Volatile",""); // Manually setting it because it is DEFAULT
 		strategyType="Volatile";
-		CurrentDocument = new Document("\n ","empty");
+		//CurrentDocument = new Document("\n ","empty");
 		status=true;
 	}
 	
-	public void changeStrategy(String strategy) {
+	public void changeStrategy(String strategy,String info) {
 		if (!status) {
 			return;
 		}
@@ -22,7 +22,7 @@ public class VersionsManager {
 			return;
 		}else {
 			
-			VersionsStrategy newStrategy = factory.createStrategy(strategy);
+			VersionsStrategy newStrategy = factory.createStrategy(strategy, info);
 			newStrategy.setEntireHistory(currentStrategy.getEntireHistory());
 			currentStrategy = newStrategy;
 			strategyType = strategy;
@@ -35,7 +35,7 @@ public class VersionsManager {
 			
 			return;
 		}
-		currentStrategy.putVersion(CurrentDocument);
+		currentStrategy.putVersion(doc);
 		//CurrentDocument = doc.cloneDeep();
 		System.out.println("VersionAdded");
 		

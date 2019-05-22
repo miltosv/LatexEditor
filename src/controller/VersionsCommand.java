@@ -31,11 +31,11 @@ public class VersionsCommand implements Command {
 			break;
 
 		case "Stable":
-			VManager.changeStrategy(args[1]);
+			VManager.changeStrategy(args[1],args[2]);
 			break;
 
 		case "Volatile":
-			VManager.changeStrategy(args[1]);
+			VManager.changeStrategy(args[1]," ");
 			break;
 
 		case "Undo":

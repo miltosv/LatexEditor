@@ -56,8 +56,9 @@ public class LatexEditorController {
 		String key=args[0];
 		//System.out.println(key);
 		//System.out.println(args[1]);
+		//System.err.println("enact"+document);
 		latexControllerMap.get(key).execute(document,args);
-		//System.out.println(this.update());
+		
 		view.ReFreshText(this.update());
 		//System.out.println(document.getContents());
 	}

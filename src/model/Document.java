@@ -4,10 +4,14 @@ import java.io.Serializable;
 
 public class Document implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String author;
 	private String date;
 	private String copyright;
-	private int VersionID = 0;
+	private int VersionID;
 	private String Contents;
 	private String type;
 	private String location;

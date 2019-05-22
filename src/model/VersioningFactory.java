@@ -6,11 +6,11 @@ public class VersioningFactory {
 
 	}
 	
-	public VersionsStrategy createStrategy(String strategy) {
+	public VersionsStrategy createStrategy(String strategy,String info) {
 		
 		switch(strategy) {
 			case "Stable":
-				return new StableVersionStrategy();
+				return new StableVersionStrategy(info);
 			case "Volatile":
 				return new VolatileVersionStrategy();
 			default:

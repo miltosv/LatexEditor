@@ -8,14 +8,31 @@ import java.util.ArrayList;
 public class StableVersionStrategy implements VersionsStrategy {
 	private String stableLocations="\\src\\stables\\"; //the user doesn't need to determine where the stables are being stored, just needs to pick them
 	private ArrayList<Document> Documents;
+	
+	
+	
+	
+	
+	public StableVersionStrategy() {
+		Documents=new ArrayList<Document>();
+	}
+	
+	public StableVersionStrategy(String location) {
+		Documents=new ArrayList<Document>();
+		location=stableLocations;
+	}
+	
+	
+	
+	
 	@Override
 	public void putVersion(Document doc) {
 		Documents.add(doc.cloneDeep());
-		/*
+		
 		try
         {    
             //Saving of object in a file 
-            FileOutputStream file = new FileOutputStream(stableLocations+doc.getVersionID()); 
+            FileOutputStream file = new FileOutputStream(stableLocations+doc.getVersionID()+".ser"); 
             ObjectOutputStream out = new ObjectOutputStream(file); 
               
             // Method for serialization of object 
@@ -32,9 +49,9 @@ public class StableVersionStrategy implements VersionsStrategy {
         { 
             System.out.println("IOException is caught"); 
         } 
-		*/
+		/*
 		try {
-			FileOutputStream file = new FileOutputStream(stableLocations+java.time.LocalDateTime.now()); 
+			FileOutputStream file = new FileOutputStream(stableLocations+java.time.LocalDateTime.now()+".ser"); 
 			ObjectOutputStream out = new ObjectOutputStream(file); 
           
 			// Method for serialization of object 
@@ -49,7 +66,7 @@ public class StableVersionStrategy implements VersionsStrategy {
         { 
             System.out.println("IOException is caught"); 
         } 
-
+*/
 		
 
 	}

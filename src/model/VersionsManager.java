@@ -10,8 +10,6 @@ public class VersionsManager {
 	public VersionsManager() {
 		currentStrategy=factory.createStrategy("Volatile"); // Manually setting it because it is DEFAULT
 		strategyType="Volatile";
-//		DocumentManager dcm= new DocumentManager();
-//		CurrentDocument=dcm.createDocument("Empty");
 		CurrentDocument = new Document("\n ","empty");
 		status=true;
 	}
@@ -34,6 +32,7 @@ public class VersionsManager {
 	}
 	public void setCurrentVersion(Document doc) {
 		if (!status) {
+			
 			return;
 		}
 		currentStrategy.putVersion(CurrentDocument);

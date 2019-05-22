@@ -28,6 +28,7 @@ public class VolatileVersionStrategy implements VersionsStrategy {
 	}
 
 	public Document getVersion() {
+		
 		Document doc;
 		if (!(Documents.isEmpty()))
 		{
@@ -36,7 +37,7 @@ public class VolatileVersionStrategy implements VersionsStrategy {
 			return doc;
 			 
 		}
-		return null;
+		return new Document(" ","Empty");
 		
 	}
 	

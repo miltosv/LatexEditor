@@ -46,7 +46,7 @@ public class LatexEditorController {
 	
 	private String update() {
 		
-		//System.out.println(document.getContents());
+		System.err.println("xxxxxxxx" + document.getContents());
 		return document.getContents();
 		
 		

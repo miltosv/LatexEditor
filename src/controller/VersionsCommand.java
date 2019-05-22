@@ -18,19 +18,31 @@ public class VersionsCommand implements Command {
 		case "Commit":
 			VManager.setCurrentVersion(doc);
 			//System.out.println(doc.getContents());
+			break;
 		case "Rollback":
 			controller.setDocument(VManager.getPreviousVersion());
+			break;
 		case "Enable":
 			VManager.Enable();
+			break;
+
 		case "Disable":
 			VManager.Disable();
+			break;
+
 		case "Stable":
 			VManager.changeStrategy(args[1]);
+			break;
+
 		case "Volatile":
 			VManager.changeStrategy(args[1]);
+			break;
+
 		case "Undo":
 			controller.setDocument(VManager.getPreviousVersion());
-		default :
+			break;
+
+//		default :
 			//System.out.println("none");
 		}
 	}

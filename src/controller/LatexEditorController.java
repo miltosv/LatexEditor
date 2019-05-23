@@ -32,6 +32,7 @@ public class LatexEditorController {
 		latexControllerMap.put("Load", factory.create("LoadCommand"));
 		latexControllerMap.put("Save", factory.create("SaveCommand"));
 		latexControllerMap.put("Versions", factory.create("VersionsCommand"));
+		latexControllerMap.put("Compile",factory.create("Compile"));
 //		latexControllerMap.put("EnableVersions", factory.create("EnableVersionsCommand"));
 //		latexControllerMap.put("DisableVersions", factory.create("DisableVersionsCommand"));
 //		latexControllerMap.put("ChangeStrategy", factory.create("ChangeStrategyCommand"));

@@ -119,6 +119,15 @@ public class Window {
 			
 		menuBar.add(SetFileLocationBtn);
 		
+		
+		
+		
+		JButton CompileBtn = new JButton("CompilePDF");
+		menuBar.add(CompileBtn);
+		CompileBtn.addActionListener(e-> latexEditor.enact(new String [] {"Compile", this.getFileLocation()}));
+		
+		
+		
 		btnExit.addActionListener(e-> System.exit(0));
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -342,9 +351,11 @@ public class Window {
 		{
 		public void actionPerformed(ActionEvent ch) 
 		{
-			JFileChooser fileChooser = new JFileChooser();
+			JFileChooser fileChooser = new JFileChooser("src\\stables");
+			
 			fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 			fileChooser.setAcceptAllFileFilterUsed(false);
+			//fileChooser.setCurrentDirectory();
 			int rVal = fileChooser.showOpenDialog(null);
 			if (rVal == JFileChooser.APPROVE_OPTION) {
 				StableTextField.setText(fileChooser.getSelectedFile().toString());
@@ -393,6 +404,13 @@ public class Window {
 	private void handleKeypress() {
 		caretPosition=editorPanel.getCaretPosition();
 		latexEditor.enact(new String [] {"Edit", this.GetDocText()});
+		/*THIS WILL ENABLE THE UNDO FUNCTION 
+		
+		
+		latexEditor.enact(new String [] {"Versions","Commit"});
+		
+		*/
+		
 		editorPanel.setCaretPosition(caretPosition);
 	}
 	private String getCaret() {

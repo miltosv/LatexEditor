@@ -31,6 +31,8 @@ public class CommandsFactory {
 				return new SaveCommand(controller);
 			case "VersionsCommand":
 				return new VersionsCommand(controller);
+			case "Compile":
+				return new CompileCommand(controller);
 //			case "RollbackToPreviousVersionCommand":
 //				return new RollbackToPreviousVersionCommand(controller);				
 //			case "EnableVersions":

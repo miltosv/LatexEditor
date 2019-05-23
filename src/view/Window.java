@@ -161,6 +161,15 @@ public class Window {
 		
 		
 		
+		
+		
+		
+		JButton CompileBtn = new JButton("CompilePDF");
+		menuBar.add(CompileBtn);
+		CompileBtn.addActionListener(e-> latexEditor.enact(new String [] {"Compile", this.getFileLocation()}));
+		
+		
+		
 		btnExit.addActionListener(e-> System.exit(0));
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();

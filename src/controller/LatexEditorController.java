@@ -36,7 +36,7 @@ public class LatexEditorController {
 //		latexControllerMap.put("DisableVersions", factory.create("DisableVersionsCommand"));
 //		latexControllerMap.put("ChangeStrategy", factory.create("ChangeStrategyCommand"));
 //		latexControllerMap.put("Rollback", factory.create("RollbackToPreviousVersionCommand"));
-		document = new Document("  ","Empty");
+		document = new Document("","Empty");
 		view=w;
 	}
 	

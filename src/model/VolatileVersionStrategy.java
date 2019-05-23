@@ -12,7 +12,10 @@ public class VolatileVersionStrategy implements VersionsStrategy {
 	@Override
 	public void putVersion(Document doc) {
 		//System.err.println(doc.getContents());
-		Documents.add(doc.cloneDeep());
+		Document docToAdd=doc.cloneDeep();
+		docToAdd.setVersionID(docToAdd.getVersionID()+1);
+		Documents.add(docToAdd);
+		
 		
 		//System.out.println("ADDED");
 
@@ -44,7 +47,8 @@ public class VolatileVersionStrategy implements VersionsStrategy {
 	@Override
 	public void setEntireHistory(ArrayList<Document> doc) {
 		for (Document dc : doc) {
-			Documents.add(dc.cloneDeep());		//DeepClone Might not be needed here
+			//Documents.add(dc.cloneDeep());		//DeepClone Might not be needed here
+			this.putVersion(dc);
 		}
 
 	}

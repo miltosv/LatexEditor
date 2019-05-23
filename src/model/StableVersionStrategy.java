@@ -6,7 +6,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class StableVersionStrategy implements VersionsStrategy {
-	private String stableLocations="\\src\\stables\\"; //the user doesn't need to determine where the stables are being stored, just needs to pick them
+	private String stableLocations; 
 	private ArrayList<Document> Documents;
 	
 	
@@ -17,9 +17,11 @@ public class StableVersionStrategy implements VersionsStrategy {
 		Documents=new ArrayList<Document>();
 	}
 	
-	public StableVersionStrategy(String location) {
+	public StableVersionStrategy(String location)
+	{
+		System.err.println(location);
 		Documents=new ArrayList<Document>();
-		location=stableLocations;
+		stableLocations=location;
 	}
 	
 	
@@ -31,6 +33,8 @@ public class StableVersionStrategy implements VersionsStrategy {
 		
 		try
         {    
+			int ID = doc.getVersionID();
+			doc.setVersionID(ID+1);
             //Saving of object in a file 
             FileOutputStream file = new FileOutputStream(stableLocations+doc.getVersionID()+".ser"); 
             ObjectOutputStream out = new ObjectOutputStream(file); 
@@ -47,7 +51,7 @@ public class StableVersionStrategy implements VersionsStrategy {
           
         catch(IOException ex) 
         { 
-            System.out.println("IOException is caught"); 
+        	 ex.printStackTrace(); 
         } 
 		/*
 		try {

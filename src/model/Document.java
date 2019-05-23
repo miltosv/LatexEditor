@@ -85,7 +85,7 @@ public class Document implements Serializable {
 	}
 	public void setContents(String contents) {
 		Contents = contents;
-		VersionID++;
+		//VersionID++;
 	}
 	public String getType() {
 		return type;

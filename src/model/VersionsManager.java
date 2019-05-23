@@ -37,7 +37,7 @@ public class VersionsManager {
 		}
 		currentStrategy.putVersion(doc);
 		//CurrentDocument = doc.cloneDeep();
-		System.out.println("VersionAdded");
+		System.err.println("VersionAdded");
 		
 	}
 	public Document getPreviousVersion() {

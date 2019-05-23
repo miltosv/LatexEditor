@@ -38,7 +38,7 @@ public class StableVersionStrategy implements VersionsStrategy {
 	private void writeToFile() {
 		
 		try {
-			FileOutputStream fos = new FileOutputStream(stableLocations+".ser");
+			FileOutputStream fos = new FileOutputStream(stableLocations);
 			 ObjectOutputStream out = new ObjectOutputStream(fos);
 	         out.writeObject(Documents);
 	         out.close();
@@ -53,7 +53,12 @@ public class StableVersionStrategy implements VersionsStrategy {
 	private void readFromFile() {
 		try
         {
-            FileInputStream fis = new FileInputStream(stableLocations+".ser");
+			/*
+			File file = new File (stableLocations);
+			if (!file.exists()) {
+				stableLocations=stableLocations+".ser";
+			}*/
+            FileInputStream fis = new FileInputStream(stableLocations);
             ObjectInputStream ois = new ObjectInputStream(fis);
  
             Documents = (ArrayList<Document>) ois.readObject();
@@ -114,6 +119,7 @@ public class StableVersionStrategy implements VersionsStrategy {
 
 	@Override
 	public ArrayList<Document> getEntireHistory() {
+		this.readFromFile();
 		return Documents;
 	}
 
@@ -121,6 +127,29 @@ public class StableVersionStrategy implements VersionsStrategy {
 
 	@Override
 	public Document getVersion() {
+		/*
+		File file = new File (stableLocations);
+		if (!file.exists()){
+			if (Documents.isEmpty()) {
+				return new Document("","Empty");
+			}
+			Document doc = Documents.get(Documents.size()-1);
+			this.removeVersion();
+			return doc;
+		}else {
+			this.readFromFile();
+			if (Documents.isEmpty()) {
+				return new Document("","Empty");
+			}
+			Document doc = Documents.get(Documents.size()-1);
+			this.removeVersion();
+			return doc;
+		}
+		*/
+		this.readFromFile();
+		if (Documents.isEmpty()) {
+			return new Document("","Empty");
+		}
 		Document doc = Documents.get(Documents.size()-1);
 		this.removeVersion();
 		return doc;

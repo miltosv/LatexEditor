@@ -10,7 +10,7 @@ public class VersionsCommand implements Command {
 	public VersionsCommand(LatexEditorController ctrl) {
 		controller = ctrl;
 		VManager = new VersionsManager();
-		System.out.println("versions command");
+		System.err.println("versions command");
 	}
 	@Override
 	public void execute(Document doc, String[] args) {

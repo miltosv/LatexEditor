@@ -1,8 +1,6 @@
 package model;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 
 public class StableVersionStrategy implements VersionsStrategy {
@@ -26,58 +24,64 @@ public class StableVersionStrategy implements VersionsStrategy {
 	
 	
 	
-	
 	@Override
+
 	public void putVersion(Document doc) {
-		Documents.add(doc.cloneDeep());
-		
-		try
-        {    
-			int ID = doc.getVersionID();
-			doc.setVersionID(ID+1);
-            //Saving of object in a file 
-            FileOutputStream file = new FileOutputStream(stableLocations+doc.getVersionID()+".ser"); 
-            ObjectOutputStream out = new ObjectOutputStream(file); 
-              
-            // Method for serialization of object 
-            out.writeObject(doc); 
-              
-            out.close(); 
-            file.close(); 
-              
-            System.out.println("Object has been serialized"); 
-  
-        } 
-          
-        catch(IOException ex) 
-        { 
-        	 ex.printStackTrace(); 
-        } 
-		/*
-		try {
-			FileOutputStream file = new FileOutputStream(stableLocations+java.time.LocalDateTime.now()+".ser"); 
-			ObjectOutputStream out = new ObjectOutputStream(file); 
-          
-			// Method for serialization of object 
-			out.writeObject(Documents); 
-          
-			out.close(); 
-        	file.close(); 
-          
-        	System.out.println("Object has been serialized"); 
-		}
-		catch(IOException ex) 
-        { 
-            System.out.println("IOException is caught"); 
-        } 
-*/
-		
+		Document newDoc=doc.cloneDeep();
+		newDoc.setVersionID(newDoc.getVersionID()+1);
+		Documents.add(newDoc);
+		this.writeToFile();
 
 	}
 
+
+	private void writeToFile() {
+		
+		try {
+			FileOutputStream fos = new FileOutputStream(stableLocations+".ser");
+			 ObjectOutputStream out = new ObjectOutputStream(fos);
+	         out.writeObject(Documents);
+	         out.close();
+	         fos.close();
+		}catch(IOException ioe)
+        {
+            ioe.printStackTrace();
+        }
+		
+	}
+	
+	private void readFromFile() {
+		try
+        {
+            FileInputStream fis = new FileInputStream(stableLocations+".ser");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+ 
+            Documents = (ArrayList<Document>) ois.readObject();
+ 
+            ois.close();
+            fis.close();
+        }
+        catch (IOException ioe)
+        {
+            ioe.printStackTrace();
+            return;
+        }
+        catch (ClassNotFoundException c)
+        {
+            System.out.println("Class not found");
+            c.printStackTrace();
+            return;
+        }
+		
+		
+	}
+	
+	
+	
 	@Override
 	public void removeVersion() {
 		Documents.remove(Documents.size()-1);
+		/*
 		try {
 			FileOutputStream file = new FileOutputStream(stableLocations+java.time.LocalDateTime.now()); 
 			ObjectOutputStream out = new ObjectOutputStream(file); 
@@ -95,7 +99,8 @@ public class StableVersionStrategy implements VersionsStrategy {
             System.out.println("IOException is caught"); 
         } 
 
-		
+		*/
+		this.writeToFile();
 
 	}
 

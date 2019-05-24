@@ -6,7 +6,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 
 @RunWith(Suite.class)
-@SuiteClasses({ TestAddLatex.class, TestCreate.class, TestEdit.class,TestSave.class,TestLoad.class})
+@SuiteClasses({ AddLatexTest.class, CreateTest.class, EditTest.class,SaveTest.class,LoadTest.class})
 public class AllTests {
 	//The above directives simply run all tests
 }

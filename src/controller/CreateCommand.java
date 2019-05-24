@@ -6,7 +6,7 @@ public class CreateCommand implements Command {
 	private DocumentManager manager; 
 	private LatexEditorController controller;
 	
-	CreateCommand(LatexEditorController control){
+	public CreateCommand(LatexEditorController control){
 		controller=control;
 		manager=new DocumentManager();
 	}

@@ -4,13 +4,13 @@ package controller;
 public class CommandsFactory {
 	private LatexEditorController controller;
 	
+
 	
-	/*
 	public CommandsFactory() {
 		super();
 		
 	}
-	*/
+	
 
 	public CommandsFactory(LatexEditorController control) {
 		controller=control;

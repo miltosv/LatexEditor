@@ -46,6 +46,21 @@ public class VolatileVersionStrategy implements VersionsStrategy {
 		
 	}
 	
+	public Document getCurrentVersion() {
+		
+		Document doc;
+		if (!(Documents.isEmpty()))
+		{
+			doc = Documents.get(Documents.size());
+			System.out.println(doc.getContents() +" "+ "getversion");
+			this.removeVersion();
+			return doc;
+			 
+		}
+		return new Document(" ","Empty");
+		
+	}
+	
 	@Override
 	public void setEntireHistory(ArrayList<Document> doc) {
 		for (Document dc : doc) {

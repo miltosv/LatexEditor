@@ -6,19 +6,19 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-//import controller.Command;
-//import controller.EditCommand;
-//import controller.LatexEditorController;
+import controller.Command;
+import controller.EditCommand;
+import controller.LatexEditorController;
+import controller.VersionsCommand;
 import model.Document;
-import model.VersionsManager;
 
 public class VersionsTest {
 	
-	//private String[] version;
-	private VersionsManager manager;
-	//private EditCommand com2;
+	private VersionsCommand com;
+	private String[] changes= null;
+	private Command com2;
 	private Document doc;
-	//private LatexEditorController controller;
+	private LatexEditorController controller;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -27,27 +27,36 @@ public class VersionsTest {
 
 	@Before
 	public void setUp() throws Exception {
-		//controller=new LatexEditorController();
-		manager = new VersionsManager();
-		//com2 = new EditCommand(controller);
+		controller=new LatexEditorController();
+		com = new VersionsCommand(controller);
+		com2 = new EditCommand(controller);
 	}
 
 	@Test(expected=NullPointerException.class)
 	public void test_volatileVersion() {
-		//version[0]= "";
-		//version[1]="Enable";
-		doc = new Document("","Empty");
-		//com.execute(doc,version);
-		doc.setContents("Stella");
-		manager.setCurrentVersion(doc);
-		System.out.println(doc.getContents()+" "+ "after change");
-		//version[0]= "";
-		//version[1]="Delia";
-		doc.setContents("Delia");
-		//com2.execute(doc,version);
-		manager.setCurrentVersion(doc);
-		//System.out.println(doc.getContents()+" "+ "after change");
-		assertEquals("Volatile fail, contents aren't equals!" , manager.getPreviousVersion(),"Stella");
+		changes[0]= "";
+		changes[1]="Enable";
+		doc=new Document("Stella","Empty");
+		com.execute(doc,changes);
+		changes[1]="Delia";
+		com2.execute(doc,changes);
+		changes[1]="Commit";
+		com.execute(doc,changes);
+		assertEquals("Volatile fail, contents aren't equals!" ,com.getVManager().getPreviousVersion().getContents(),"Stella");
+	}
+	
+	@Test(expected=NullPointerException.class)
+	public void test_stableVersion() {
+		changes[0]= "";
+		changes[1]="Stable";
+		changes[2]="C:\\Users\\stell\\Desktop";
+		doc=new Document("Stella","Empty");
+		com.execute(doc,changes);
+		changes[1]="Delia";
+		com2.execute(doc,changes);
+		changes[1]="Commit";
+		com.execute(doc,changes);
+		assertEquals("Stable fail, contents aren't equals!" ,com.getVManager().getPreviousVersion().getContents(),"Stella");
 	}
 
 }

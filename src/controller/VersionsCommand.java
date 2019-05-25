@@ -16,7 +16,6 @@ public class VersionsCommand implements Command {
 		switch (args[1]) {
 		case "Commit":
 			VManager.setCurrentVersion(doc);
-			//System.out.println(doc.getContents());
 			break;
 		case "Rollback":
 			controller.setDocument(VManager.getPreviousVersion());

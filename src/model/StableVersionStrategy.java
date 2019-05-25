@@ -154,5 +154,15 @@ public class StableVersionStrategy implements VersionsStrategy {
 		this.removeVersion();
 		return doc;
 	}
+	
+	public Document getCurrentVersion() {
+		this.readFromFile();
+		if (Documents.isEmpty()) {
+			return new Document("","Empty");
+		}
+		Document doc = Documents.get(Documents.size());
+		this.removeVersion();
+		return doc;
+	}
 
 }

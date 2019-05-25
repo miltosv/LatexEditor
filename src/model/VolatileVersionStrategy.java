@@ -15,6 +15,7 @@ public class VolatileVersionStrategy implements VersionsStrategy {
 		Document docToAdd=doc.cloneDeep();
 		docToAdd.setVersionID(docToAdd.getVersionID()+1);
 		Documents.add(docToAdd);
+		System.out.print(docToAdd.getContents()+" " +"put version\n");
 		
 		
 		//System.out.println("ADDED");
@@ -36,6 +37,7 @@ public class VolatileVersionStrategy implements VersionsStrategy {
 		if (!(Documents.isEmpty()))
 		{
 			doc = Documents.get(Documents.size()-1);
+			System.out.println(doc.getContents() +" "+ "getversion");
 			this.removeVersion();
 			return doc;
 			 

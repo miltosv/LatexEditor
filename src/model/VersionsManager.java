@@ -44,6 +44,7 @@ public class VersionsManager {
 		if (!status) {
 			return null;
 		}
+		System.out.println(currentStrategy.getVersion().getContents()+ " "+"previous");
 		return currentStrategy.getVersion();
 		
 	}

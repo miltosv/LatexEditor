@@ -6,7 +6,6 @@ public class VersionsCommand implements Command {
 	private LatexEditorController controller;
 	private VersionsManager VManager;
 	
-	
 	public VersionsCommand(LatexEditorController ctrl) {
 		controller = ctrl;
 		VManager = new VersionsManager();
@@ -45,6 +44,13 @@ public class VersionsCommand implements Command {
 //		default :
 			//System.out.println("none");
 		}
+	}
+	
+	public VersionsManager getVManager() {
+		return VManager;
+	}
+	public void setVManager(VersionsManager vManager) {
+		VManager = vManager;
 	}
 
 }

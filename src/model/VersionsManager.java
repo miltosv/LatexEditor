@@ -4,6 +4,7 @@ public class VersionsManager {
 	private VersionsStrategy currentStrategy;
 	private VersioningFactory factory = new VersioningFactory();
 	private String strategyType;
+	
 	//private Document CurrentDocument;
 	private boolean status;
 	
@@ -55,5 +56,11 @@ public class VersionsManager {
 		status= false;
 	}
 	
+	public String getStrategyType() {
+		return strategyType;
+	}
 
+	public void setStrategyType(String strategyType) {
+		this.strategyType = strategyType;
+	}
 }

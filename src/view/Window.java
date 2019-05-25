@@ -9,6 +9,8 @@ import javax.swing.JEditorPane;
 import javax.swing.JButton;
 import java.awt.Insets;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
@@ -42,6 +44,7 @@ public class Window {
 	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
 	private int caretPosition;
 	private JTextField StableTextField;
+	private JRadioButton TrackingON;
 	//private String stableFilePath;
 	/*public class MainWindow {
 		
@@ -100,13 +103,7 @@ public class Window {
 			}
 		}
 		});
-		
-		
-		
-		
-		JButton btnRollback = new JButton("Rollback");
-		menuBar.add(btnRollback);
-		btnRollback.addActionListener(e-> latexEditor.enact(new String [] {"Versions",btnRollback.getText()/*,TexFilePath.getText()*/}));
+		//btnRollback.addActionListener(e-> latexEditor.enact(new String [] {"Versions",btnRollback.getText()}));
 		
 		JButton btnSave = new JButton("Save");
 		menuBar.add(btnSave);
@@ -251,14 +248,42 @@ public class Window {
 		frmLatexeditor.getContentPane().add(lblTextEditor, gbc_lblTextEditor);
 		
 		JButton btnEditBtn = new JButton("Commit Changes");
+		btnEditBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(isTrackingOn()) {
+					latexEditor.enact(new String[] {"Versions","Commit"});
+				}else {
+					JOptionPane.showMessageDialog(btnEditBtn, "Tracking is Disabled");
+				}
+			}
+		});
 		btnEditBtn.setToolTipText("Click this to update the document");
 		GridBagConstraints gbc_btnEditBtn = new GridBagConstraints();
 		gbc_btnEditBtn.insets = new Insets(0, 0, 5, 5);
 		gbc_btnEditBtn.gridx = 5;
 		gbc_btnEditBtn.gridy = 2;
 		frmLatexeditor.getContentPane().add(btnEditBtn, gbc_btnEditBtn);
+		
+		
+		
+		
+		JButton btnRollback = new JButton("Rollback");
+		GridBagConstraints gbc_btnRollback = new GridBagConstraints();
+		gbc_btnRollback.insets = new Insets(0, 0, 5, 5);
+		gbc_btnRollback.gridx = 6;
+		gbc_btnRollback.gridy = 2;
+		frmLatexeditor.getContentPane().add(btnRollback, gbc_btnRollback);
+		btnRollback.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(isTrackingOn()) {
+					latexEditor.enact(new String[] {"Versions",btnRollback.getText()});
+				}else {
+					JOptionPane.showMessageDialog(btnRollback, "Tracking is Disabled");
+				}
+			}
+		});
 		//btnEditBtn.addActionListener(e-> latexEditor.enact(new String[] {"Edit",this.GetDocText()}));
-		btnEditBtn.addActionListener(e-> latexEditor.enact(new String[] {"Versions","Commit"}));
+		//btnEditBtn.addActionListener(e-> latexEditor.enact(new String[] {"Versions","Commit"}));
 		
 		
 		JButton btnSubsection = new JButton("Subsection");
@@ -341,7 +366,7 @@ public class Window {
 		gbc_lblTrackHistory.gridy = 9;
 		frmLatexeditor.getContentPane().add(lblTrackHistory, gbc_lblTrackHistory);
 		
-		JRadioButton TrackingON = new JRadioButton("Tracking ON");
+		TrackingON = new JRadioButton("Tracking ON");
 		TrackingON.setSelected(true);
 		TrackingON.addActionListener(e-> latexEditor.enact(new String [] {"Versions","Enable"}));
 			
@@ -370,6 +395,7 @@ public class Window {
 		gbc_Volatile.gridx = 0;
 		gbc_Volatile.gridy = 12;
 		frmLatexeditor.getContentPane().add(Volatile, gbc_Volatile);
+		
 		Volatile.addActionListener(e-> latexEditor.enact(new String [] {"Versions","Volatile"}));
 		
 		JRadioButton NonVolatile = new JRadioButton("Stable");
@@ -384,16 +410,22 @@ public class Window {
 		{
 		public void actionPerformed(ActionEvent ch) 
 		{
-			JFileChooser fileChooser = new JFileChooser("src\\stables");
 			
-			fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-			fileChooser.setAcceptAllFileFilterUsed(false);
-			//fileChooser.setCurrentDirectory();
-			int rVal = fileChooser.showOpenDialog(null);
-			if (rVal == JFileChooser.APPROVE_OPTION) {
-				StableTextField.setText(fileChooser.getSelectedFile().toString());
-				latexEditor.enact(new String [] {"Versions","Stable",StableTextField.getText()});
-			}
+				
+			
+				JFileChooser fileChooser = new JFileChooser("src\\stables");
+			
+				fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+				fileChooser.setAcceptAllFileFilterUsed(false);
+				//fileChooser.setCurrentDirectory();
+				int rVal = fileChooser.showOpenDialog(null);
+				if (rVal == JFileChooser.APPROVE_OPTION) {
+					StableTextField.setText(fileChooser.getSelectedFile().toString());
+					latexEditor.enact(new String [] {"Versions","Stable",StableTextField.getText()});
+				}
+			
+				//JOptionPane.showMessageDialog(NonVolatile, "Tracking is Disabled");
+			
 		}
 		});
 		
@@ -451,5 +483,9 @@ public class Window {
 		//return Integer.toString(editorPanel.getCaretPosition());
 		
 		return Integer.toString(caretPosition);
+	}
+	
+	private boolean isTrackingOn() {
+		return (TrackingON.isSelected());
 	}
 }

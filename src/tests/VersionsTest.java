@@ -46,7 +46,7 @@ public class VersionsTest {
 		doc.setContents("Delia");
 		//com2.execute(doc,version);
 		manager.setCurrentVersion(doc);
-		System.out.println(doc.getContents()+" "+ "after change");
+		//System.out.println(doc.getContents()+" "+ "after change");
 		assertEquals("Volatile fail, contents aren't equals!" , manager.getPreviousVersion(),"Stella");
 	}
 

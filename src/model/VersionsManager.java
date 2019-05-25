@@ -7,7 +7,7 @@ public class VersionsManager {
 	
 	//private Document CurrentDocument;
 	private boolean status;
-	
+
 	public VersionsManager() {
 		currentStrategy=factory.createStrategy("Volatile",""); // Manually setting it because it is DEFAULT
 		strategyType="Volatile";
@@ -62,5 +62,13 @@ public class VersionsManager {
 
 	public void setStrategyType(String strategyType) {
 		this.strategyType = strategyType;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 }

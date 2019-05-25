@@ -45,8 +45,16 @@ public class VersionsManager {
 		if (!status) {
 			return null;
 		}
-		System.out.println(currentStrategy.getVersion().getContents()+ " "+"previous");
+		System.out.println(currentStrategy.getVersion().getContents()+ " " +"previous\n");
 		return currentStrategy.getVersion();
+		
+	}
+	public Document getCurrentVersion() {
+		if (!status) {
+			return null;
+		}
+		System.out.println(currentStrategy.getVersion().getContents()+ " " +"previous\n");
+		return currentStrategy.getCurrentVersion();
 		
 	}
 	public void Enable() {

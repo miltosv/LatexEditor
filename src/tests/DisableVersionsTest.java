@@ -43,11 +43,11 @@ public class DisableVersionsTest {
 	
 	@Test(expected=NullPointerException.class)
 	public void test_disableVersions_contentsdoentchange() {
-		doc=new Document("Stella","Empty");
+		doc=new Document("test1","Empty");
 		versionID=doc.getVersionID();
 		com.getVManager().Disable();
 		changes[0]= "";
-		changes[1]="Delia";
+		changes[1]="test2";
 		com2.execute(doc,changes);
 		changes[1]="Commit";
 		com.execute(doc,changes);

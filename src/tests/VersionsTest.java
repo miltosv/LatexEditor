@@ -36,27 +36,27 @@ public class VersionsTest {
 	public void test_volatileVersion() {
 		changes[0]= "";
 		changes[1]="Enable";
-		doc=new Document("Stella","Empty");
+		doc=new Document("test1","Empty");
 		com.execute(doc,changes);
-		changes[1]="Delia";
+		changes[1]="test2";
 		com2.execute(doc,changes);
 		changes[1]="Commit";
 		com.execute(doc,changes);
-		assertEquals("Volatile fail, contents aren't equals!" ,com.getVManager().getPreviousVersion().getContents(),"Stella");
+		assertEquals("Volatile fail, contents aren't equals!" ,com.getVManager().getPreviousVersion().getContents(),"test1");
 	}
 	
 	@Test(expected=NullPointerException.class)
 	public void test_stableVersion() {
 		changes[0]= "";
 		changes[1]="Stable";
-		changes[2]="C:\\Users\\stell\\Desktop\\test";
-		doc=new Document("Stella","Empty");
+		changes[2]="src\\testlocation\\test";
+		doc=new Document("test1","Empty");
 		com.execute(doc,changes);
-		changes[1]="Delia";
+		changes[1]="test2";
 		com2.execute(doc,changes);
 		changes[1]="Commit";
 		com.execute(doc,changes);
-		assertEquals("Stable fail, contents aren't equals!" ,com.getVManager().getPreviousVersion().getContents(),"Stella");
+		assertEquals("Stable fail, contents aren't equals!" ,com.getVManager().getPreviousVersion().getContents(),"test1");
 	}
 
 }

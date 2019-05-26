@@ -37,9 +37,9 @@ public class RollBackTest {
 	public void test_rollBack() {
 		changes[0]= "";
 		changes[1]="Enable";
-		doc=new Document("Stella","Empty");
+		doc=new Document("test1","Empty");
 		com.execute(doc,changes);
-		changes[1]="Delia";
+		changes[1]="test2";
 		com2.execute(doc,changes);
 		changes[1]="Commit";
 		com.execute(doc,changes);

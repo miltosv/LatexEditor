@@ -27,16 +27,21 @@ public class ChangeStrategyTest {
 	public void test_changeStrategy_volatileToStable() {
 		doc=new Document("LatexEditor","Empty");
 		manager.setCurrentVersion(doc);
-		manager.changeStrategy("Stable","C:\\Users\\stell\\Desktop\\test");
+		manager.changeStrategy("Stable","src\\testlocation\\test");
 		assertEquals("Volatile to Stable fail, strategy isn't equals!" , manager.getStrategyType(),"Stable");
 		assertEquals("Volatile to Stable fail, contents aren't equals!" , manager.getPreviousVersion().getContents(), "LatexEditor");
 	}
 		
 	@Test
 	public void test_changeStrategy_StableToVolatile() {
-		manager.changeStrategy("Stable","");
+		manager.changeStrategy("Stable","src\\testlocation\\test");
+		doc = new Document("LatexEditor","Empty");
+		manager.setCurrentVersion(doc);
+		
 		manager.changeStrategy("Volatile","");
 		assertEquals("Stable to Volatile fail, strategy isn't equals!" , manager.getStrategyType(),"Volatile");
+		assertEquals("Stable to Volatile fail, contents aren't equals!" , manager.getPreviousVersion().getContents(), "LatexEditor");
+
 	}
 
 }

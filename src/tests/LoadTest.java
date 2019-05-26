@@ -32,7 +32,7 @@ public class LoadTest {
 	@Test(expected=NullPointerException.class)
 	public void test_LoadCommand() {
 		changes[0]="";
-		changes[1] = "C:\\Users\\stell\\Desktop\\help.txt";
+		changes[1] = "src\\testlocation\\test.tex";
 		doc=new Document("","empty");
 		com.execute(doc, changes);
 		assertEquals("Load fail, contents aren't equals!",doc.getContents(),"This is a test");

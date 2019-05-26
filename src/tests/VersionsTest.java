@@ -49,7 +49,7 @@ public class VersionsTest {
 	public void test_stableVersion() {
 		changes[0]= "";
 		changes[1]="Stable";
-		changes[2]="C:\\Users\\stell\\Desktop";
+		changes[2]="C:\\Users\\stell\\Desktop\\test";
 		doc=new Document("Stella","Empty");
 		com.execute(doc,changes);
 		changes[1]="Delia";

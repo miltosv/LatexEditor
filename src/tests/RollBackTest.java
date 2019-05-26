@@ -46,7 +46,7 @@ public class RollBackTest {
 		contents=com.getVManager().getPreviousVersion().getContents();
 		changes[1]="Rollback";
 		com.execute(doc,changes);
-		assertEquals("Rollback fail, contents aren't equals!" ,com.getVManager().getCurrentVersion().getContents(),contents);
+		assertEquals("Rollback fail, contents aren't equals!" ,com.getVManager().getPreviousVersion().getContents(),contents);
 		
 	}
 

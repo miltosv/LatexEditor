@@ -37,7 +37,7 @@ public class SaveTest {
 	public void test_SaveCommand() {
 		doc=new Document("Test for the SaveCommand","Empty");
 		changes[0]="";
-		changes[1] = "C:\\Users\\stell";
+		changes[1] = "C:\\Users\\stell\\test.tex";
 		com.execute(doc, changes);
 		String info = changes[1];
 		doc2=new Document("","empty");

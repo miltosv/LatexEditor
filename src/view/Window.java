@@ -469,12 +469,12 @@ public class Window {
 	private void handleKeypress() {
 		caretPosition=editorPanel.getCaretPosition();
 		latexEditor.enact(new String [] {"Edit", this.GetDocText()});
-		/*THIS WILL ENABLE THE UNDO FUNCTION 
+		//THIS WILL ENABLE THE UNDO FUNCTION 
 		
 		
-		latexEditor.enact(new String [] {"Versions","Commit"});
+		//latexEditor.enact(new String [] {"Versions","Commit"});
 		
-		*/
+		
 		
 		editorPanel.setCaretPosition(caretPosition);
 	}

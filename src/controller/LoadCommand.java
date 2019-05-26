@@ -18,8 +18,7 @@ public class LoadCommand implements Command {
 		Document document;
 		String info = args[1];
 		document=new Document("","empty");
-		//MAYBE DOCUMENT SHOULD HANDLE THAT TOO OR DOC MANAGER WHO KNOWS. I DON'T ~MILTOSV
-
+		
 		try {
 			String content = new String(Files.readAllBytes(Paths.get(info)));
 			document.setContents(content);

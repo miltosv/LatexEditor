@@ -14,7 +14,7 @@ public class EditCommand implements Command {
 	{
 		String info = args[1];
 		doc.setContents(info);	
-		System.out.println(doc.getContents() + " "+ "edit");	
+		//System.out.println(doc.getContents() + " "+ "edit");	
 
 	}
 

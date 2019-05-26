@@ -13,7 +13,7 @@ public class CompileCommand implements Command {
 	}
 	@Override
 	public void execute(Document doc, String[] args) {
-		//command=command+args[1];
+		
 		System.err.println(args[1]);
 		try
 		{

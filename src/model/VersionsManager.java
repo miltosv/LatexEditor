@@ -38,17 +38,18 @@ public class VersionsManager {
 		}
 		currentStrategy.putVersion(doc);
 		//CurrentDocument = doc.cloneDeep();
-		System.err.println("VersionAdded");
+		//System.err.println("VersionAdded");
 		
 	}
 	public Document getPreviousVersion() {
 		if (!status) {
 			return null;
 		}
-		System.out.println(currentStrategy.getVersion().getContents()+ " " +"previous\n");
+		//System.out.println(currentStrategy.getVersion().getContents()+ " " +"previous\n");
 		return currentStrategy.getVersion();
 		
 	}
+	/*
 	public Document getCurrentVersion() {
 		if (!status) {
 			return null;
@@ -56,7 +57,7 @@ public class VersionsManager {
 		System.out.println(currentStrategy.getVersion().getContents()+ " " +"previous\n");
 		return currentStrategy.getCurrentVersion();
 		
-	}
+	}*/
 	public void Enable() {
 		status=true;
 	}

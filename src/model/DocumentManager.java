@@ -30,7 +30,7 @@ public class DocumentManager {
 				String contents=(new String(readAllBytes(get(keyStateConfigPair[CONTENTS]))));
 				String key=keyStateConfigPair[ID];
 				map.put(key,new Document(contents,key));
-				System.err.println("doctype  "+key+"  created");
+			//	System.err.println("doctype  "+key+"  created");
 				//System.out.println("doctype   "+contents+"   created");
 				
 				

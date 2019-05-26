@@ -33,16 +33,7 @@ public class CommandsFactory {
 				return new VersionsCommand(controller);
 			case "Compile":
 				return new CompileCommand(controller);
-//			case "RollbackToPreviousVersionCommand":
-//				return new RollbackToPreviousVersionCommand(controller);				
-//			case "EnableVersions":
-//				return new EnableVersionsManagementCommand(controller);
-//			case "DisableVersions":
-//				return new DisableVersionsManagementCommand(controller);
-//			case "ChangeVersionsStrategyCommand":
-//				return new ChangeVersionsStrategyCommand(controller);
-			//case "UpdateCommand":
-			//	return new Updater(controller);
+
 			default: return null;
 		}
 

@@ -13,12 +13,9 @@ public class CreateCommand implements Command {
 	@Override
 	public void execute(Document doc, String args[]) {
 		String info = args[1];
-		//Document newdocument;
 		doc=manager.createDocument(info);
 		controller.setDocument(doc);
-		//doc=newdocument;
-		//System.out.println(doc.getType());
-
+		
 	}
 
 }

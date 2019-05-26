@@ -17,7 +17,7 @@ public class StableVersionStrategy implements VersionsStrategy {
 	
 	public StableVersionStrategy(String location)
 	{
-		System.err.println(location);
+		//System.err.println(location);
 		Documents=new ArrayList<Document>();
 		stableLocations=location;
 	}
@@ -154,7 +154,7 @@ public class StableVersionStrategy implements VersionsStrategy {
 		this.removeVersion();
 		return doc;
 	}
-	
+	/*
 	public Document getCurrentVersion() {
 		this.readFromFile();
 		if (Documents.isEmpty()) {
@@ -163,6 +163,6 @@ public class StableVersionStrategy implements VersionsStrategy {
 		Document doc = Documents.get(Documents.size());
 		this.removeVersion();
 		return doc;
-	}
+	}*/
 
 }

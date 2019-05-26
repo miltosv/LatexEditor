@@ -9,7 +9,7 @@ public class VersionsCommand implements Command {
 	public VersionsCommand(LatexEditorController ctrl) {
 		controller = ctrl;
 		VManager = new VersionsManager();
-		System.err.println("versions command");
+		//System.err.println("versions command");
 	}
 	@Override
 	public void execute(Document doc, String[] args) {
@@ -39,9 +39,6 @@ public class VersionsCommand implements Command {
 		case "Undo":
 			controller.setDocument(VManager.getPreviousVersion());
 			break;
-
-//		default :
-			//System.out.println("none");
 		}
 	}
 	

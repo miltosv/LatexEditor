@@ -15,7 +15,7 @@ public class VolatileVersionStrategy implements VersionsStrategy {
 		Document docToAdd=doc.cloneDeep();
 		docToAdd.setVersionID(docToAdd.getVersionID()+1);
 		Documents.add(docToAdd);
-		System.out.print(docToAdd.getContents()+" " +"put version\n");
+		//System.out.print(docToAdd.getContents()+" " +"put version\n");
 		
 		
 		//System.out.println("ADDED");
@@ -45,14 +45,14 @@ public class VolatileVersionStrategy implements VersionsStrategy {
 		return new Document(" ","Empty");
 		
 	}
-	
+	/*
 	public Document getCurrentVersion() {
 		
 		Document doc;
 		if (!(Documents.isEmpty()))
 		{
 			doc = Documents.get(Documents.size());
-			System.out.println(doc.getContents() +" "+ "getversion");
+			//System.out.println(doc.getContents() +" "+ "getversion");
 			this.removeVersion();
 			return doc;
 			 
@@ -60,7 +60,7 @@ public class VolatileVersionStrategy implements VersionsStrategy {
 		return new Document(" ","Empty");
 		
 	}
-	
+	*/
 	@Override
 	public void setEntireHistory(ArrayList<Document> doc) {
 		for (Document dc : doc) {
